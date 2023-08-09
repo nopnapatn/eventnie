@@ -33,3 +33,8 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__ . '/auth.php';
+
+// skeleton for ux/ui
+Route::get('/skeletons/event-post', function () {
+    return view('skeletons/event-post');
+});
