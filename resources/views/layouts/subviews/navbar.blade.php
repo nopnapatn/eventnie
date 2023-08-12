@@ -9,8 +9,7 @@
         </div>
 
         <!-- search -->
-        <div class="flex items-center w-4/6">
-            <!-- search -->
+        <!-- <div class="flex items-center w-4/6">
             <form class=" w-full">
                 <label for="default-search" class="mb-2 text-sm font-medium text-black sr-only">Search</label>
                 <div class="relative">
@@ -20,10 +19,9 @@
                         </svg>
                     </div>
                     <input type="search" id="default-search" class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-black focus:border-black" placeholder="Search Mockups, Logos..." required>
-                    <!-- <button type="submit" class="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button> -->
                 </div>
             </form>
-        </div>
+        </div> -->
 
         <!-- icon  -->
         <div>
@@ -98,10 +96,10 @@
                     <a href="{{ url('/') }}" class="text-gray-900 hover:underline" aria-current="page">Home</a>
                 </li>
                 <li>
-                    <a href="#" class="text-gray-900 hover:underline">Section 1</a>
+                    <a href="{{ route('events.index') }}" class="text-gray-900 hover:underline">All Events</a>
                 </li>
                 <li>
-                    <a href="#" class="text-gray-900 hover:underline">Section 2</a>
+                    <a href="{{ url('skeletons/certificate') }}" class="text-gray-900 hover:underline">Certificate</a>
                 </li>
                 <li>
                     <a href="#" class="text-gray-900 hover:underline">Section 3</a>

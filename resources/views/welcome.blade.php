@@ -2,7 +2,7 @@
 
 @section('content')
 
-<!-- recent section -->
+<!-- new events section -->
 <div class="pb-12">
     <div class="pb-4 flex items-center justify-between">
         <span class="font-semibold text-2xl">New Events!</span>
@@ -139,8 +139,10 @@
             <span class="text1xl text-gray-500">view all</span>
         </a>
     </div>
-    <div class="flex">
-        <div class="w-1/3 p-4">
+    <div class="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-4">
+
+        <!-- block 1 -->
+        <div class="p-4">
             <ol class="relative border-l border-gray-200 dark:border-gray-700">
                 <li class="mb-10 ml-6">
                     <span class="absolute flex items-center justify-center w-6 h-6 bg-blue-100 rounded-lg -left-3 ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900">
@@ -158,7 +160,9 @@
                 </li>
             </ol>
         </div>
-        <div class="w-2/3 grid grid-cols-2 md:grid-cols-2 gap-4">
+
+        <!-- block 2 -->
+        <div class="">
             <div role="status" class="max-w-sm p-4 border border-gray-200 rounded shadow md:p-6">
                 <div class="flex items-center justify-center h-48 mb-4 bg-gray-300 rounded">
                     <svg class="w-10 h-10 text-gray-20000" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 20">
@@ -203,6 +207,10 @@
                 </div>
                 <span class="sr-only">Loading...</span>
             </div>
+        </div>
+
+        <!-- block 3 -->
+        <div class="">
             <div role="status" class="max-w-sm p-4 border border-gray-200 rounded shadow md:p-6">
                 <div class="flex items-center justify-center h-48 mb-4 bg-gray-300 rounded">
                     <svg class="w-10 h-10 text-gray-20000" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 20">
@@ -250,5 +258,4 @@
         </div>
     </div>
 </div>
-
 @endsection
