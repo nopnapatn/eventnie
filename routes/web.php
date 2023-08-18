@@ -46,3 +46,6 @@ Route::get('/skeletons/profile', function () {
 Route::get('/skeletons/certificate', function () {
     return view('skeletons/certificate');
 });
+
+Route::resource('/events', EventController::class);
+
