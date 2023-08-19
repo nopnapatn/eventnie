@@ -13,8 +13,14 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
             $table->string('email')->unique();
+            $table->string('name');
+            $table->string('faculty');
+            $table->integer('year');
+            $table->string('studentID');
+            $table->string('image_path');
+            $table->string('phoneNumber');
+            $table->string('certification')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
 
@@ -28,7 +34,7 @@ return new class extends Migration
 
             $table->text('bio')->nullable();
             $table->string('profile_picture')->nullable();
-            
+
             $table->boolean('is_admin')->default(false);
             $table->boolean('can_create_event')->default(false);
 

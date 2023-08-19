@@ -29,18 +29,38 @@ class RegisteredUserController extends Controller
      * @throws \Illuminate\Validation\ValidationException
      */
     public function store(Request $request): RedirectResponse
-    {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
-
+    {   
+        
+        // $request->validate([
+        //     'name' => ['required', 'string', 'max:255'],
+        //     'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+        //     'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        //     'faculty'=> ['required', 'string', 'max:255'],
+        //     'major'=> ['required', 'string', 'max:255'],
+        //     'year'=> ['required', 'string', 'max:255'],
+        //     'studentID'=> ['required', 'string', 'max:255'],
+        //     'pictureProfile'=> ['required', 'string', 'max:255'],
+        //     'phoneNumber'=> ['required', 'string', 'max:255'],
+        // ]);
+        // dd($request);
+        $path = '';
+            if ($request->hasFile('image_path')) {
+		// บันทึกไฟล์รูปภาพลงใน folder ชื่อ 'user_images' ที่ storage/app/public
+		$path = $request->file('image_path')->store('user_images', 'public');
+            }
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'faculty'=> $request->faculty,
+            'year'=> $request->college_year,
+            'studentID'=> $request->StudentID,
+            'image_path'=> $path,
+            'phoneNumber'=> $request->phoneNumber,
+            
         ]);
+        //  $user->image_path = $path;
+
 
         event(new Registered($user));
 
