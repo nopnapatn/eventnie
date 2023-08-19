@@ -14,22 +14,19 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('email')->unique();
-            $table->string('firstName');
-            $table->string('lastName');
+            $table->string('name');
             $table->string('faculty');
-            $table->string('major');
-            $table->int('year');
+            $table->integer('year');
             $table->string('studentID');
-            $table->string('pictureProfile');
+            $table->string('image_path');
             $table->string('phoneNumber');
-            $table->string('socialMedia');
-            $table->int('joinEventCount');
-            $table->string('certification');
-            $table->string('allergicFood');
+            $table->string('certification')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+            $table->boolean('is_admin')->default(false);
+            $table->boolean('can_create_event')->default(false);
         });
     }
 
