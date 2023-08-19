@@ -6,27 +6,40 @@
     <x-aside-bar></x-aside-bar>
 
     <!-- content -->
-    <div class="pl-16 w-full">
+    <div class="px-16 w-full">
         <!-- section 1 -->
         <x-section-1></x-section-1>
 
         <!-- section 2 -->
-        <div class="w-1/2 py-8">
-            <span class="font-semibold text-6xl">Let's join Event!</span>
+        <div class="w-1/2 pb-8">
+            <span class="font-semibold text-6xl">Eventnie</span>
             <p class="py-4">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsa ut totam ducimus! Nisi esse corporis provident quae atque, cumque iure, distinctio illo odit deserunt nesciunt, dicta eum magnam eaque pariatur.</p>
             <a href="{{ route('events.index') }}">
-                <button class="bg-black rounded-lg h-10 w-24 mt-4 text-white">Join</button>
+                <button class="bg-black rounded-lg h-10 w-24 mt-4 text-white">view</button>
             </a>
         </div>
 
         <!-- section 3 -->
         <div class="flex py-8 overflow-x-scroll h-1/2 max-w-6xl">
-            <x-event-post-item></x-event-post-item>
-            <x-event-post-item></x-event-post-item>
-            <x-event-post-item></x-event-post-item>
-            <x-event-post-item></x-event-post-item>
-            <x-event-post-item></x-event-post-item>
-            <x-event-post-item></x-event-post-item>
+            @foreach ($events as $event)
+            <a href="{{ route('events.show', ['event' => $event]) }}">
+                <div class="px-4">
+                    <div class="border border-black rounded-lg h-96 w-80">
+                        <div class="rounded-lg h-48">
+                            <img src="{{ asset('storage/' . $event->image_path) }}" alt="Event Image" class="w-10 h-10">
+                        </div>
+                        <div class="p-4">
+                            <div class="flex justify-between py-2">
+                                <span class="text-ellipsis overflow-hidden font-semibold max-h-12 w-2/3">{{ $event->title }}</span>
+                                <span class="text-red-400 text-xs">1 day left!</span>
+                            </div>
+                            <span class="">Mon, 27 Jan 2023</span>
+                            <p class=" text-ellipsis overflow-hidden max-h-12 text-gray-500">{{ $event->description }}</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            @endforeach
         </div>
 
         <!-- section 4 -->

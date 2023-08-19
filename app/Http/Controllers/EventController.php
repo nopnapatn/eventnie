@@ -118,4 +118,14 @@ class EventController extends Controller
 
         return redirect()->route('events.index');
     }
+
+    public function welcome()
+    {
+        // Gate::authorize('viewAny', Event::class);
+
+        $events = Event::get();
+        return view('welcome', [
+            'events' => $events,
+        ]);
+    }
 }

@@ -18,17 +18,17 @@ return new class extends Migration
             $table->string('faculty');
             $table->integer('year');
             $table->string('studentID');
-            $table->string('image_path');
+            // $table->string('image_path');
             $table->string('phoneNumber');
             $table->string('certification')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
 
-            $table->string('student_id');
-            $table->string('faculty');
+            // $table->string('student_id');
+            // $table->string('faculty');
             $table->string('major');
             $table->string('college_year');
-            $table->string('phone_number');
+            // $table->string('phone_number');
             $table->string('allergic_food')->nullable();
             $table->string('joined_event_count')->default(0);
 

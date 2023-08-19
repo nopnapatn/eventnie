@@ -15,9 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [EventController::class, 'welcome']);
 
 Route::get('/events', [EventController::class, 'index'])
     ->name('events.index');
@@ -35,10 +33,6 @@ Route::middleware('auth')->group(function () {
 require __DIR__ . '/auth.php';
 
 // skeleton for ux/ui
-Route::get('/skeletons/event-post', function () {
-    return view('skeletons/event-post');
-});
-
 Route::get('/skeletons/profile', function () {
     return view('skeletons/profile');
 });
@@ -48,4 +42,3 @@ Route::get('/skeletons/certificate', function () {
 });
 
 Route::resource('/events', EventController::class);
-
