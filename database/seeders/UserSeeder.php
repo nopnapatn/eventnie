@@ -13,8 +13,19 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
+        $user = new User();
+        $user->name = 'Admin';
+        $user->email = 'admin@ku.th';
+        $user->password = '1234';
+        $user->studentID = '0000000000';
+        $user->faculty = 'Admin';
+        $user->year = 0;
+        $user->major = 'Admin';
+        $user->college_year = 0;
+        $user->is_admin = true;
+
         User::factory()
-            ->count(10)
+            ->count(3)
             ->create();
     }
 }

@@ -26,7 +26,7 @@ class EventController extends Controller
      */
     public function create()
     {
-        // Gate::authorize('create', Event::class);
+        Gate::authorize('create', Event::class);
 
         return view('events.create');
     }
@@ -36,8 +36,7 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        // Gate::authorize('create', Event::class);
-
+        // Validate the incoming data
         $validatedData = $request->validate([
             'title' => 'required|max:255',
             'type' => 'required|max:255',
@@ -46,16 +45,41 @@ class EventController extends Controller
             'contact' => 'required|max:255',
             'start_at' => 'required|date',
             'end_at' => 'required|date',
-            'image_path' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'max_attendees' => 'required|integer|min:0',
         ]);
 
-        $validatedData['creator_id'] = auth()->id();
+        // if ($request->withErrors()) {
+        //     return redirect()->back()->withErrors($validatedData);
+        // }
 
-        Event::create($validatedData);
+        // Handle the uploaded image
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('event_images', 'public');
+            $validatedData['image_path'] = $imagePath;
+        }
+
+        // Add the creator_id to the validated data
+        // $validatedData['creator_id'] = auth()->id();
+
+        // Create the event
+        $event = new Event();
+        $event->title = $request->title;
+        $event->type = $request->type;
+        $event->description = $request->description;
+        $event->location = $request->location;
+        $event->contact = $request->contact;
+        $event->max_attendees = $request->max_attendees;
+        $event->creator_id = auth()->id();
+        $event->start_at = $request->start_at;
+        $event->end_at = $request->end_at;
+        $event->image_path = $validatedData['image_path'];
+
+        $event->save();
 
         return redirect()->route('events.index');
     }
+
 
     /**
      * Display the specified resource.

@@ -24,7 +24,7 @@ class EventFactory extends Factory
             'contact' => $this->faker->phoneNumber(),
             'start_at' => $this->faker->dateTimeBetween('now', '+1 month'),
             'end_at' => $this->faker->dateTimeBetween('+1 month', '+2 month'),
-            // 'image_path' => $this->faker->image('public/storage/', 800, 600, null, false),
+            'image_path' => $this->faker->image('public/storage/', 800, 600, null, false),
             'max_attendees' => $this->faker->numberBetween(10, 100),
             'is_full' => $this->faker->boolean(),
             'status' => $this->faker->randomElement(['active', 'got problem']),
