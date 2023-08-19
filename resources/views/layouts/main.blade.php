@@ -12,7 +12,7 @@
 <body>
     @include('layouts.subviews.navbar')
 
-    <main class="bg-white py-8 px-40 min-h-screen">
+    <main class="bg-gray-100 py-8 px-20 min-h-screen">
         @yield('content')
     </main>
 
