@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('contact');
             $table->dateTime('start_at');
             $table->dateTime('end_at');
-            $table->string('image')->nullable();
+            $table->string('image_path')->nullable();
 
             // $table->boolean('is_published')->default(false);
             // $table->boolean('is_cancelled')->default(false);
@@ -36,9 +36,10 @@ return new class extends Migration
              
             $table->string('status')->default('active'); // active, got problem (need to contact the admin)
            
-            $table->foreignId('creator_id')->constrained('users');
+            // $table->foreignId('creator_id')->constrained('users');
 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
