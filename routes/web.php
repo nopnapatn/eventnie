@@ -38,3 +38,14 @@ require __DIR__ . '/auth.php';
 Route::get('/skeletons/event-post', function () {
     return view('skeletons/event-post');
 });
+
+Route::get('/skeletons/profile', function () {
+    return view('skeletons/profile');
+});
+
+Route::get('/skeletons/certificate', function () {
+    return view('skeletons/certificate');
+});
+
+Route::resource('/events', EventController::class);
+
