@@ -1,4 +1,4 @@
-<aside class="border-r border-black w-20 min-h-screen">
+<aside class="border-r-4 border-black w-20 min-h-screen">
     <!-- logo -->
     <a href="{{ url('/') }}">
         <div class="bg-black rounded-full h-10 w-10">

@@ -4,7 +4,13 @@
  <script src="{{ asset('build/assets/drag.js') }}" defer></script>
  <script src="{{ asset('build/assets/todo.js') }}" defer></script>
  <section>
-
+@if (!empty($tasks) && is_array($tasks))
+    @foreach ($tasks as $task)
+        <!-- แสดงรายละเอียดของแต่ละ task -->
+    @endforeach
+@else
+    <p>No tasks available.</p>
+@endif
    <div class="board">
      <form id="todo-form">
        <input type="text" placeholder="New TODO..." id="todo-input" />
@@ -47,6 +53,7 @@
      </div>
    </div>
  </section>
+
 
  @endsection
 
@@ -95,7 +102,7 @@
 
      font-size: 14px;
      outline: none;
-   }
+    }
 
    #todo-form button {
      padding: 12px 32px;

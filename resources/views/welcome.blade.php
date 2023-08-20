@@ -2,48 +2,129 @@
 
 @section('content')
 <section class="flex">
-    <!-- menu bar -->
-    <x-aside-bar></x-aside-bar>
-
     <!-- content -->
-    <div class="px-16 w-full">
-        <!-- section 1 -->
-        <x-section-1></x-section-1>
+    <div class="px-40 w-full">
+        <div class="py-4"></div>
+        <!-- section -->
+        <div class="border-4 border-black h-fit w-full">
+            <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
-        <!-- section 2 -->
-        <div class="w-1/2 pb-8">
-            <span class="text-6xl">Have a nice day.</span>
-            <p class="py-4">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsa ut totam ducimus! Nisi esse corporis provident quae atque, cumque iure, distinctio illo odit deserunt nesciunt, dicta eum magnam eaque pariatur.</p>
-            <a href="{{ route('events.index') }}">
-                <button class="bg-black rounded-lg h-10 w-24 mt-4 text-white shadow-xl">view</button>
-            </a>
-        </div>
+            <link href="https://unpkg.com/swiper/swiper-bundle.min.css" rel="stylesheet" />
 
-        <!-- section 3 -->
-        <div class="flex py-8 overflow-x-scroll h-1/2 max-w-6xl">
-            @foreach ($events as $event)
-            <a href="{{ route('events.show', ['event' => $event]) }}">
-                <div class="px-4">
-                    <div class="border border-black rounded-lg h-96 w-80 shadow-xl">
-                        <div class="rounded-lg h-48 border-b border-black">
-                            <img src="{{ asset('storage/' . $event->image_path) }}" alt="Event Image" class="w-full h-full rounded-lg">
-                        </div>
-                        <div class="p-4">
-                            <div class="flex justify-between py-2">
-                                <span class="text-ellipsis overflow-hidden font-semibold max-h-12 w-2/3">{{ $event->title }}</span>
-                                <span class="text-red-400 text-xs">1 day left!</span>
+            <section class="bg-white">
+                <div class="mx-auto max-w-[1340px] px-4 py-16 sm:px-6 sm:py-24 lg:me-0 lg:pe-0 lg:ps-8">
+                    <div class="grid grid-cols-1 gap-y-8 lg:grid-cols-3 lg:items-center lg:gap-x-16">
+                        <div class="max-w-xl text-left ltr:sm:text-left rtl:sm:text-right">
+                            <h2 class="text-3xl font-bold sm:text-4xl">
+                                กำลังมองหากิจกรรมทำกันอยู่รึปล่าวที่นี่มีให้เลือกเยอะนะ
+                            </h2>
+
+                            <p class="mt-4 text-gray-500">
+                                ลองกดลูกศรเลื่อนดูสิ เผื่อเจอกิจกรรมที่สนใจอยู่นะ กดเลยๆ
+                            </p>
+
+                            <div class="hidden lg:mt-8 lg:flex lg:gap-4 justify-center">
+                                <button class="prev-button rounded-full border border-pink-600 p-3 text-pink-600 hover:bg-pink-600 hover:text-white">
+                                    <span class="sr-only">Previous Slide</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 w-5 rtl:rotate-180">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                                    </svg>
+                                </button>
+
+                                <button class="next-button rounded-full border border-pink-600 p-3 text-pink-600 hover:bg-pink-600 hover:text-white">
+                                    <span class="sr-only">Next Slide</span>
+                                    <svg class="h-5 w-5 rtl:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                                    </svg>
+                                </button>
                             </div>
-                            <span class="">Mon, 27 Jan 2023</span>
-                            <p class=" text-ellipsis overflow-hidden max-h-12 text-gray-500">{{ $event->description }}</p>
+                        </div>
+
+                        <div class="mx-6 lg:col-span-2 lg:mx-0">
+                            <div class="swiper-container !overflow-hidden">
+                                <div class="swiper-wrapper">
+                                    @foreach ($events as $event)
+                                    <div class="swiper-slide">
+                                        <!-- <a href="{{ route('events.show', ['event' => $event]) }}">
+                                            <div class="px-4 h-80">
+                                                <a href="{{ route('events.show', ['event' => $event]) }}" class="group relative block bg-black">
+                                                    <img alt="Developer" src="{{ asset('storage/' . $event->image_path) }}" class="absolute inset-0 h-full w-full object-cover opacity-75 transition-opacity group-hover:opacity-50" />
+
+                                                    <div class="relative p-4 sm:p-6 lg:p-8">
+                                                        <p class="text-sm font-medium uppercase tracking-widest text-pink-500">End!! {{ date('d-m-Y', strtotime($event->end_at)) }}</p>
+
+                                                        <p class="text-xl font-bold text-white sm:text-2xl text-ellipsis overflow-hidden line-clamp-1">{{ $event->title }}</p>
+
+                                                        <div class="mt-32 sm:mt-40 lg:mt-44">
+                                                            <div class="translate-y-8 transform opacity-0 transition-all group-hover:translate-y-0 group-hover:opacity-100 text-ellipsis overflow-hidden line-clamp-2">
+                                                                <p class="text-sm text-white">{{ $event->description }}</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </a> -->
+                                        <a href="{{ route('events.show', ['event' => $event]) }}" class="group relative block h-64 sm:h-80 lg:h-96">
+                                            <span class="absolute inset-0 border-2 border-dashed border-black"></span>
+                                            <div class="relative flex h-full transform items-end border-2 border-black bg-black transition-transform group-hover:-translate-x-2 group-hover:-translate-y-2 opacity-90">
+                                                <div class="p-4 !pt-0 transition-opacity group-hover:absolute group-hover:opacity-0 sm:p-6 lg:p-8">
+                                                    <img alt="Developer" src="{{ asset('storage/' . $event->image_path) }}" class="absolute inset-0 h-full w-full object-cover opacity-75 transition-opacity group-hover:opacity-50" />
+                                                    <p class="text-sm font-medium uppercase tracking-widest text-white">End!! {{ date('d-m-Y', strtotime($event->end_at)) }}</p>
+                                                    <h2 class="mt-4 text-xl font-medium sm:text-2xl text-white">{{ $event->title }}</h2>
+                                                </div>
+
+                                                <div class="absolute p-4 opacity-0 transition-opacity group-hover:relative group-hover:opacity-100 sm:p-6 lg:p-8">
+                                                    <p class="text-sm font-medium uppercase tracking-widest text-red-400">End!! {{ date('d-m-Y', strtotime($event->end_at)) }}</p>
+                                                    <h3 class="mt-4 text-xl font-medium sm:text-2xl text-white">{{ $event->title }}</h3>
+
+                                                    <p class="mt-4 text-sm sm:text-base text-white">{{ $event->description }}</p>
+
+                                                    <p class="mt-8 font-bold text-white">Read more</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    @endforeach
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </a>
-            @endforeach
+            </section>
+
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    new Swiper('.swiper-container', {
+                        loop: true,
+                        slidesPerView: 1,
+                        spaceBetween: 32,
+                        autoplay: {
+                            delay: 8000,
+                        },
+                        breakpoints: {
+                            640: {
+                                centeredSlides: true,
+                                slidesPerView: 1.25,
+                            },
+                            1024: {
+                                centeredSlides: false,
+                                slidesPerView: 1.5,
+                            },
+                        },
+                        navigation: {
+                            nextEl: '.next-button',
+                            prevEl: '.prev-button',
+                        },
+                    })
+                })
+            </script>
         </div>
 
-        <!-- section 4 -->
-        <div></div>
+        <div class="py-4"></div>
+        <!-- section -->
+        <div class="">
+
+        </div>
     </div>
 </section>
 @endsection
