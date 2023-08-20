@@ -47,9 +47,9 @@ class AdminController extends Controller
         if ($user) {
             $user->can_create_event = false;
             $user->save();
-            return redirect()->route('admin.grant_permission')->with('success', 'Permission revoked for' . $user->email);
+            return redirect()->route('admin.revoke_permission')->with('success', 'Permission revoked for' . $user->email);
         } else {
-            return redirect()->route('admin.grant_permission')->with('error', 'User not found with the provided email.');
+            return redirect()->route('admin.revoke_permission')->with('error', 'User not found with the provided email.');
         }
     }
 }

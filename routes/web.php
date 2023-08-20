@@ -2,9 +2,11 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\EventController;
-use App\Http\Controllers\TaskController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\TaskController;
+use App\Models\Event;
+use App\Models\User;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
 
@@ -32,6 +34,13 @@ Route::get('/', [EventController::class, 'welcome']);
 //     }
 // });
 
+// Route::get('/', function () {
+//     $events = Event::all();
+//     $users = User::all();
+//     return view('admin.index', compact('events', 'users'));
+// })->name('admin.index');
+
+
 Route::get('/events', [EventController::class, 'index'])
     ->name('events.index');
 
@@ -52,6 +61,15 @@ Route::middleware('auth')->group(function () {
 
 
 require __DIR__ . '/auth.php';
+
+// skeleton for ux/ui
+Route::get('/skeletons/profile', function () {
+    return view('skeletons/profile');
+});
+
+Route::get('/skeletons/certificate', function () {
+    return view('skeletons/certificate');
+});
 
 Route::resource('/events', EventController::class);
 
