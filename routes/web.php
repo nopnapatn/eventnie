@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
 
@@ -45,15 +46,6 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__ . '/auth.php';
 
-// skeleton for ux/ui
-Route::get('/skeletons/profile', function () {
-    return view('skeletons/profile');
-});
-
-Route::get('/skeletons/certificate', function () {
-    return view('skeletons/certificate');
-});
-
 Route::resource('/events', EventController::class);
 
 // Admin
@@ -79,3 +71,7 @@ Route::put(
     '/admin/revoke-permission',
     [AdminController::class, 'revokePermission']
 )->name('admin.revoke_permission');
+
+// user
+Route::get('/user', [UserController::class])
+    ->name('user.index');
