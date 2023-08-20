@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
@@ -148,8 +149,12 @@ class EventController extends Controller
         // Gate::authorize('viewAny', Event::class);
 
         $events = Event::get();
+        $users = User::get();
         if (Gate::allows('isAdmin', auth()->user())) {
-            return view('/admin/index');
+            return view('/admin/index', [
+                'events' => $events,
+                'users' => $users,
+            ]);
         } else {
             return view('welcome', [
                 'events' => $events,
