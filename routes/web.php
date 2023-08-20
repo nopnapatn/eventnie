@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,6 +18,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [EventController::class, 'welcome']);
+// Route::get('/', function () {
+//     return view('/admin/index');
+// });
+
+// Route::get('/', function () {
+//     if (Gate::allows('isAdmin', auth()->user())) {
+//         return view('/admin/index');
+//     } else {
+//         return view('welcome'); // Or your regular homepage
+//     }
+// });
 
 Route::get('/events', [EventController::class, 'index'])
     ->name('events.index');
@@ -42,3 +55,27 @@ Route::get('/skeletons/certificate', function () {
 });
 
 Route::resource('/events', EventController::class);
+
+// Admin
+
+// add permission
+Route::get(
+    '/admin/grant-permission',
+    [AdminController::class, 'showGrantPermissionForm']
+)->name('admin.grant_permission');
+
+Route::put(
+    '/admin/grant-permission',
+    [AdminController::class, 'grantPermission']
+)->name('admin.grant_permission');
+
+// revoke permission
+Route::get(
+    '/admin/revoke-permission',
+    [AdminController::class, 'showRevokePermissionForm']
+)->name('admin.revoke_permission');
+
+Route::put(
+    '/admin/revoke-permission',
+    [AdminController::class, 'revokePermission']
+)->name('admin.revoke_permission');

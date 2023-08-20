@@ -13,8 +13,38 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
+        $user = new User();
+        $user->name = 'Admin';
+        $user->email = 'admin@ku.th';
+        $user->email_verified_at = now();
+        $user->remember_token = "0000000000";
+        $user->password = '1234';
+        $user->phoneNumber = "000000000";
+        $user->studentID = '0000000000';
+        $user->faculty = 'Admin';
+        $user->year = 0;
+        $user->major = 'Admin';
+        $user->college_year = 0;
+        $user->is_admin = true;
+        $user->save();
+
+        $user = new User();
+        $user->name = 'User';
+        $user->email = 'user@ku.th';
+        $user->email_verified_at = now();
+        $user->remember_token = "1111111111";
+        $user->password = '1234';
+        $user->phoneNumber = "1111111111";
+        $user->studentID = '1111111111';
+        $user->faculty = 'User';
+        $user->year = 0;
+        $user->major = 'User';
+        $user->college_year = 0;
+        $user->is_admin = false;
+        $user->save();
+
         User::factory()
-            ->count(10)
+            ->count(3)
             ->create();
     }
 }

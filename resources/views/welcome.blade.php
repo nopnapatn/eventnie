@@ -12,7 +12,7 @@
 
         <!-- section 2 -->
         <div class="w-1/2 pb-8">
-            <span class="font-semibold text-6xl">Eventnie</span>
+            <span class="text-6xl">Have a nice day.</span>
             <p class="py-4">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsa ut totam ducimus! Nisi esse corporis provident quae atque, cumque iure, distinctio illo odit deserunt nesciunt, dicta eum magnam eaque pariatur.</p>
             <a href="{{ route('events.index') }}">
                 <button class="bg-black rounded-lg h-10 w-24 mt-4 text-white">view</button>
@@ -26,7 +26,7 @@
                 <div class="px-4">
                     <div class="border border-black rounded-lg h-96 w-80">
                         <div class="rounded-lg h-48">
-                            <img src="{{ asset('storage/' . $event->image_path) }}" alt="Event Image" class="w-10 h-10">
+                            <img src="{{ asset('storage/' . $event->image_path) }}" alt="Event Image" class="w-full h-full rounded-lg">
                         </div>
                         <div class="p-4">
                             <div class="flex justify-between py-2">

@@ -16,7 +16,26 @@
 
     <!-- setting icon -->
     <div class="">
+
+        @if (Auth::check() && Auth::user()->can_create_event)
+            <a href="{{ route('events.create') }}" class="">
+                <div class="bg-slate-400">Create event</div>
+            </a>
+        @endif
+
         <div class="bg-black rounded-lg h-10 w-10 my-4"></div>
-        <div class="bg-black rounded-lg h-10 w-10 my-4"></div>
+
+        @auth
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+
+                <x-dropdown-link :href="route('logout')"
+                    onclick="event.preventDefault();
+                                    this.closest('form').submit();">
+                    <div class="bg-black rounded-lg h-10 w-10 my-4"></div>
+                </x-dropdown-link>
+            </form>
+        @endauth
+
     </div>
 </aside>

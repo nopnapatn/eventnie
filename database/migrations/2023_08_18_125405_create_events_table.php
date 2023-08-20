@@ -35,7 +35,7 @@ return new class extends Migration
             // $table->integer('waitlist_max')->default(0);
              
             $table->string('status')->default('active'); // active, got problem (need to contact the admin)
-           
+            $table->string('creator_id')->nullable();
             // $table->foreignId('creator_id')->constrained('users');
 
             $table->timestamps();
