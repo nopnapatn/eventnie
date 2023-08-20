@@ -3,162 +3,162 @@
  @section('content')
  <script src="{{ asset('build/assets/drag.js') }}" defer></script>
  <script src="{{ asset('build/assets/todo.js') }}" defer></script>
-@foreach ($tasks as $task)
-    <p>{{ $task->title }}</p>
-    @can('editTask', $task)
-        <a href="{{ route('tasks.edit', $task) }}">Edit</a>
-    @endcan
-@endforeach
+ @foreach ($tasks as $task)
+ <p>{{ $task->title }}</p>
+ @can('editTask', $task)
+ <a href="{{ route('tasks.edit', $task) }}">Edit</a>
+ @endcan
+ @endforeach
 
-<section >
-  
-    <div class="board">
-      <form id="todo-form">
-        <input type="text" placeholder="New TODO..." id="todo-input" />
-        <button type="submit">Add +</button>
-      </form>
+ <section>
 
-      <div class="lanes">
-        <div class="swim-lane" id="todo-lane">
-          <h3 class="heading">TODO</h3>
- 
-          <p class="task" draggable="true">Get groceries</p>
-          <p class="task" draggable="true">Feed the dogs</p>
-          <p class="task" draggable="true">Mow the lawn</p>
-        </div>
+   <div class="board">
+     <form id="todo-form">
+       <input type="text" placeholder="New TODO..." id="todo-input" />
+       <button type="submit">Add +</button>
+     </form>
 
-        <div class="swim-lane">
-          <h3 class="heading">Doing</h3>
+     <div class="lanes">
+       <div class="swim-lane" id="todo-lane">
+         <h3 class="heading">TODO</h3>
 
-          <p class="task" draggable="true">Binge 80 hours of Game of Thrones</p>
-        </div>
+         <p class="task" draggable="true">Get groceries</p>
+         <p class="task" draggable="true">Feed the dogs</p>
+         <p class="task" draggable="true">Mow the lawn</p>
+       </div>
 
-        <div class="swim-lane">
-          <h3 class="heading">Done</h3>
+       <div class="swim-lane">
+         <h3 class="heading">Doing</h3>
 
-          <p class="task" draggable="true">
-            Watch video of a man raising a grocery store lobster as a pet
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
+         <p class="task" draggable="true">Binge 80 hours of Game of Thrones</p>
+       </div>
 
-  @endsection
+       <div class="swim-lane">
+         <h3 class="heading">Done</h3>
 
-  <style>
-    * {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  font-family: sans-serif;
+         <p class="task" draggable="true">
+           Watch video of a man raising a grocery store lobster as a pet
+         </p>
+       </div>
+     </div>
+   </div>
+ </section>
 
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
-}
+ @endsection
 
-*::-webkit-scrollbar {
-  display: none;
-}
+ <style>
+   * {
+     padding: 0;
+     margin: 0;
+     box-sizing: border-box;
+     font-family: sans-serif;
 
-.board {
-  width: 100%;
-  height: 100vh;
-  overflow: scroll;
+     -ms-overflow-style: none;
+     /* IE and Edge */
+     scrollbar-width: none;
+     /* Firefox */
+   }
 
-  background-image: url(https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80);
-  background-position: center;
-  background-size: cover;
-}
+   *::-webkit-scrollbar {
+     display: none;
+   }
 
-/* ---- FORM ---- */
-#todo-form {
-  padding: 32px 32px 0;
-}
+   .board {
+     width: 100%;
+     height: 100vh;
+     overflow: scroll;
 
-#todo-form input {
-  padding: 12px;
-  margin-right: 12px;
-  width: 225px;
+     background-image: url(https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80);
+     background-position: center;
+     background-size: cover;
+   }
 
-  border-radius: 4px;
-  border: none;
+   /* ---- FORM ---- */
+   #todo-form {
+     padding: 32px 32px 0;
+   }
 
-  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.25);
-  background: white;
+   #todo-form input {
+     padding: 12px;
+     margin-right: 12px;
+     width: 225px;
 
-  font-size: 14px;
-  outline: none;
-}
+     border-radius: 4px;
+     border: none;
 
-#todo-form button {
-  padding: 12px 32px;
+     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.25);
+     background: white;
 
-  border-radius: 4px;
-  border: none;
+     font-size: 14px;
+     outline: none;
+   }
 
-  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.25);
-  background: #ffffff;
-  color: black;
+   #todo-form button {
+     padding: 12px 32px;
 
-  font-weight: bold;
-  font-size: 14px;
-  cursor: pointer;
-}
+     border-radius: 4px;
+     border: none;
 
-/* ---- BOARD ---- */
-.lanes {
-  display: flex;
-  align-items: flex-start;
-  justify-content: start;
-  gap: 16px;
+     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.25);
+     background: #ffffff;
+     color: black;
 
-  padding: 24px 32px;
+     font-weight: bold;
+     font-size: 14px;
+     cursor: pointer;
+   }
 
-  overflow: scroll;
-  height: 100%;
-}
+   /* ---- BOARD ---- */
+   .lanes {
+     display: flex;
+     align-items: flex-start;
+     justify-content: start;
+     gap: 16px;
 
-.heading {
-  font-size: 22px;
-  font-weight: bold;
-  margin-bottom: 8px;
-}
+     padding: 24px 32px;
 
-.swim-lane {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+     overflow: scroll;
+     height: 100%;
+   }
 
-  background: #f4f4f4;
-  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.25);
+   .heading {
+     font-size: 22px;
+     font-weight: bold;
+     margin-bottom: 8px;
+   }
 
-  padding: 12px;
-  border-radius: 4px;
-  width: 225px;
-  min-height: 120px;
+   .swim-lane {
+     display: flex;
+     flex-direction: column;
+     gap: 12px;
 
-  flex-shrink: 0;
-}
+     background: #f4f4f4;
+     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.25);
 
-.task {
-  background: white;
-  color: black;
-  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
+     padding: 12px;
+     border-radius: 4px;
+     width: 225px;
+     min-height: 120px;
 
-  padding: 12px;
-  border-radius: 4px;
+     flex-shrink: 0;
+   }
 
-  font-size: 16px;
-  cursor: move;
-}
+   .task {
+     background: white;
+     color: black;
+     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
 
-.is-dragging {
-  scale: 1.05;
-  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.25);
-  background: rgb(50, 50, 50);
-  color: white;
-}
-  </style>
+     padding: 12px;
+     border-radius: 4px;
 
- 
+     font-size: 16px;
+     cursor: move;
+   }
+
+   .is-dragging {
+     scale: 1.05;
+     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.25);
+     background: rgb(50, 50, 50);
+     color: white;
+   }
+ </style>

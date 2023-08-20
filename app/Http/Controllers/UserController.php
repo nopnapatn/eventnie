@@ -12,10 +12,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $user = User::get();
-        return view('user.index', [
-            'user' => $user,
-        ]);
+        return view('user.index');
     }
 
     /**
