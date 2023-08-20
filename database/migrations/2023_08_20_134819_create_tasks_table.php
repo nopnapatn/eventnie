@@ -17,6 +17,8 @@ return new class extends Migration
         $table->text('description');
         $table->string('email'); // เพิ่มคอลัมน์ email
         $table->timestamps();
+         $table->string('creator_email');
+        $table->string('assignee_email')->nullable();
         });
     }
 
@@ -26,5 +28,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('tasks');
+        Schema::table('tasks', function (Blueprint $table) {
+            $table->dropColumn(['creator_email', 'assignee_email']);
+        });
     }
 };

@@ -26,7 +26,6 @@ class UserFactory extends Factory
 
             'studentID' => fake()->numberBetween(1000000000, 9999999999),
             'faculty' => Str::random(10),
-            'year' => fake()->numberBetween(1, 5),
             'major' => Str::random(10),
             'college_year' => fake()->numberBetween(1, 5),
             'phoneNumber' => fake()->phoneNumber(),

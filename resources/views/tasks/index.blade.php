@@ -5,6 +5,7 @@
  <script src="{{ asset('build/assets/todo.js') }}" defer></script>
 
 
+
  <section>
 
    <div class="board">
