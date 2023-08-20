@@ -6,7 +6,7 @@
     <x-aside-bar></x-aside-bar>
 
     <!-- content -->
-    <div class="pl-16 w-full">
+    <div class="px-16 w-full">
         <!-- section 1 -->
         <x-section-1></x-section-1>
 
@@ -15,8 +15,8 @@
             @foreach ($events as $event)
             <a href="{{ route('events.show', ['event' => $event]) }}">
                 <div class="px-4">
-                    <div class="border border-black rounded-lg h-96 w-80">
-                        <div class="rounded-lg h-48">
+                    <div class="border border-black rounded-lg h-96 w-80 shadow-xl">
+                        <div class="rounded-lg h-48 border-b border-black">
                             <img src="{{ asset('storage/' . $event->image_path) }}" alt="Event Image" class="w-full h-full rounded-lg">
                         </div>
                         <div class="p-4">
