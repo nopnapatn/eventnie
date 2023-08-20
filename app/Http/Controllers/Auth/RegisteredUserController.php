@@ -43,10 +43,11 @@ class RegisteredUserController extends Controller
         //     'phoneNumber'=> ['required', 'string', 'max:255'],
         // ]);
         // dd($request);
+        
         $path = '';
             if ($request->hasFile('image_path')) {
 		// บันทึกไฟล์รูปภาพลงใน folder ชื่อ 'user_images' ที่ storage/app/public
-		$path = $request->file('image_path')->store('user_images', 'public');
+		$path = $request->file('image_path')->store('images/profile', 'public');
             }
         $user = User::create([
             'name' => $request->name,
@@ -59,9 +60,9 @@ class RegisteredUserController extends Controller
             'phoneNumber'=> $request->phoneNumber,
             
         ]);
-        //  $user->image_path = $path;
+        $user->image_path = $path;
 
-
+        // $user->save();
         event(new Registered($user));
 
         Auth::login($user);
