@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [EventController::class, 'welcome']);
+
 // Route::get('/', function () {
 //     return view('/admin/index');
 // });
@@ -97,3 +98,28 @@ Route::get('/user/edit', [UserController::class, 'edit'])
 
 Route::put('/user/edit', [UserController::class, 'update'])
     ->name('user.update');
+Route::get(
+    '/admin/events/{event}',
+    [AdminController::class, 'showEvent']
+)->name('admin.show_event');
+
+// join event
+
+Route::get(
+    '/events/{event}/join',
+    [EventController::class, 'showJoinEventForm']
+)->name('events.join');
+
+Route::post(
+    '/events/{event}/join',
+    [
+        EventController::class, 'joinEvent'
+    ]
+)->name('event.join');
+
+// my events
+
+Route::get(
+    '/user-events',
+    [EventController::class, 'userEvents']
+)->name('events.user_events');

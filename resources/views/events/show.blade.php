@@ -9,7 +9,7 @@
         <div class="">
             <span class="font-semibold text-6xl text-black">{{ $event->title }}</span>
             <div class="py-2"></div>
-            <div class="bg-black h-10 w-full flex items-center">
+            <div class="bg-black h-10 w-full flex items-center shadow-xl">
                 <span class="text-white">START {{ date('d-m-Y', strtotime($event->start_at)) }}</span>
                 <span>\t</span>
                 <span class="text-white">END {{ date('d-m-Y', strtotime($event->end_at)) }}</span>
@@ -18,7 +18,7 @@
             </div>
             <div class="py-4"></div>
             <div class="flex">
-                <div class="border-4 border-black h-96 w-2/3">
+                <div class="border-4 border-black h-96 w-2/3 shadow-xl">
                     <img src="{{ asset('storage/' . $event->image_path) }}" alt="Event Image" class="bg-cover bg-center h-full w-full">
                 </div>
                 <div class="h-96 w-1/3 p-4">
@@ -26,7 +26,7 @@
                     <span class="text-black">LOCATION {{ $event->location }}</span><br><br>
                     <span class="text-black">START {{ date('d-m-Y', strtotime($event->start_at)) }}</span><br>
                     <span class="text-red-400 text-xs">END {{ date('d-m-Y', strtotime($event->end_at)) }}</span><br><br>
-                    <button class="bg-black rounded-lg h-10 w-24 text-white">Join Event</button>
+                    <button class="bg-black rounded-lg h-10 w-24 text-white shadow-xl">Join Event</button>
                 </div>
             </div>
         </div>

@@ -62,6 +62,7 @@ class UserController extends Controller
 
         $user = User::find($userDetail->id);
         $user->name = $request->get('name');
+        $user->phoneNumber = $request->get('phoneNumber');
         $user->allergic_food = $request->get('allergic_food');
         $user->bio = $request->get('bio');
 

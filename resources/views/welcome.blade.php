@@ -11,7 +11,7 @@
 
             <link href="https://unpkg.com/swiper/swiper-bundle.min.css" rel="stylesheet" />
 
-            <section class="bg-white">
+            <section class="bg-white shadow-xl">
                 <div class="mx-auto max-w-[1340px] px-4 py-16 sm:px-6 sm:py-24 lg:me-0 lg:pe-0 lg:ps-8">
                     <div class="grid grid-cols-1 gap-y-8 lg:grid-cols-3 lg:items-center lg:gap-x-16">
                         <div class="max-w-xl text-left ltr:sm:text-left rtl:sm:text-right">
@@ -64,7 +64,7 @@
                                                 </a>
                                             </div>
                                         </a> -->
-                                        <a href="{{ route('events.show', ['event' => $event]) }}" class="group relative block h-64 sm:h-80 lg:h-96">
+                                        <a href="{{ route('events.show', ['event' => $event]) }}" class="group relative block h-64 sm:h-80 lg:h-96 shadow-xl">
                                             <span class="absolute inset-0 border-2 border-dashed border-black"></span>
                                             <div class="relative flex h-full transform items-end border-2 border-black bg-black transition-transform group-hover:-translate-x-2 group-hover:-translate-y-2 opacity-90">
                                                 <div class="p-4 !pt-0 transition-opacity group-hover:absolute group-hover:opacity-0 sm:p-6 lg:p-8">

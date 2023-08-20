@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
 
             $table->string('title');
-            $table->string('type'); // ... 
+            $table->string('type');
             $table->text('description');
             $table->string('location');
             $table->string('contact');
@@ -33,9 +33,13 @@ return new class extends Migration
             // $table->integer('attendees_count')->default(0);
             // $table->integer('waitlist_count')->default(0);
             // $table->integer('waitlist_max')->default(0);
-             
+            
             $table->string('status')->default('active'); // active, got problem (need to contact the admin)
-            $table->string('creator_id')->nullable();
+            $table->foreignId('creator_id')->constrained('users');
+            // $table->foreignId('organizer_id')->constrained('users');
+            // $table->foreignId('attendees')->constrained('users');
+            
+            // $table->foreignIdFor(User::class);
             // $table->foreignId('creator_id')->constrained('users');
 
             $table->timestamps();

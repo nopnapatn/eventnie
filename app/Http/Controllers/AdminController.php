@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Event;
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -72,5 +73,15 @@ class AdminController extends Controller
         } else {
             return redirect()->route('admin.revoke_permission')->with('error', 'User not found with the provided email.');
         }
+    }
+
+    public function showEvent(Event $event)
+    {
+        return view('admin.show-event', ['event' => $event]);
+    }
+
+    public function showUser(User $user)
+    {
+        return view('admin.show-user', ['user' => $user]);
     }
 }

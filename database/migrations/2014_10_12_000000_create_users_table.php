@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Event;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -37,6 +38,8 @@ return new class extends Migration
 
             $table->boolean('is_admin')->default(false);
             $table->boolean('can_create_event')->default(false);
+
+            // $table->foreignIdFor(Event::class);
 
             $table->rememberToken();
             $table->timestamps();
