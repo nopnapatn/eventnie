@@ -23,8 +23,8 @@
             @if (Route::has('login'))
             <div class="flex items-center">
                 @auth
-                <a href="{{ url('/dashboard') }}" class="">Dashboard</a>
-                <a href="{{ route('user.index') }}">
+                $users = $user
+                <a href="{{ route('user.index'), ['user' => $user]}}">
                     <div class="bg-gray-400 rounded-full h-10 w-10 mx-4">
                         <img src="{{ auth::user()->profile_picture }}" alt="">
                     </div>
