@@ -63,4 +63,11 @@ class EventPolicy
     {
         return $event->creator_id === $user->id;
     }
+
+    public function join(User $user, Event $event): Response
+    {
+        return $event->attendees()->where('user_id', $user->id)->exists()
+            ? Response::deny('You are already an attendee.')
+            : Response::allow();
+    }
 }

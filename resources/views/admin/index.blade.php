@@ -9,15 +9,17 @@
 
                 @foreach ($events as $event)
                     <!-- Event Card -->
-                    <div class="border border-gray-200 rounded shadow-md p-4 hover:bg-gray-50 transition duration-300">
-                        <h3 class="text-lg font-semibold mb-2">{{ $event->title }}</h3>
-                        <p class="text-sm text-gray-500">{{ $event->description }}</p>
-                        <div class="mt-4">
-                            {{-- <span class="text-sm text-gray-600">Starts: {{ $event->start_at->format('M j, Y H:i A') }}</span>
+                    <a href=" {{ route('admin.show_event', ['event' => $event]) }} ">
+                        <div class="border border-gray-200 rounded shadow-md p-4 hover:bg-gray-50 transition duration-300">
+                            <h3 class="text-lg font-semibold mb-2">{{ $event->title }}</h3>
+                            <p class="text-sm text-gray-500">{{ $event->description }}</p>
+                            <div class="mt-4">
+                                {{-- <span class="text-sm text-gray-600">Starts: {{ $event->start_at->format('M j, Y H:i A') }}</span>
                             <br>
                             <span class="text-sm text-gray-600">Ends: {{ $event->end_at->format('M j, Y H:i A') }}</span> --}}
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 @endforeach
 
                 @if (count($events) === 0)

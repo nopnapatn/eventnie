@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Event;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Storage;
 
 class EventController extends Controller
 {
@@ -160,5 +162,58 @@ class EventController extends Controller
                 'events' => $events,
             ]);
         }
+    }
+
+    public function showJoinEventForm(Event $event)
+    {
+        return view('events.join-event', [
+            'event' => $event,
+        ]);
+    }
+
+    public function joinEvent(Request $request, Event $event)
+    {
+        if (Gate::denies('join-event')) {
+            abort(403, 'You must be logged in to join an event.');
+        }
+
+        $user = Auth::user();
+
+        // Check if the user is already an attendee
+        $userIsAttendee = $event->attendees()->where('user_id', $user->id)->exists();
+
+        if (!$userIsAttendee) {
+            $data = [
+                'description' => $request->input('description'),
+                'img_url' => $this->uploadImageAndGetUrl($request->file('photo')),
+                'video_url' => $request->input('video_url'),
+            ];
+            $event->attendees()->attach($user, $data);
+        }
+
+        return redirect()->route('events.index', ['event' => $event->id])
+            ->with('success', 'You have successfully joined the event.');
+    }
+
+    protected function uploadImageAndGetUrl($image)
+    {
+        if ($image) {
+            $imagePath = $image->store('attendee-images', 'public');
+            return Storage::url($imagePath);
+        }
+
+        return null;
+    }
+
+    public function userEvents()
+    {
+        // Gate::authorize('view-user-events');
+
+        $user = User::findOrFail(auth()->id());
+
+        // $user = Auth::user();
+        $attendedEvents = $user->attendedEvents()->get();
+
+        return view('events.user-events', compact('attendedEvents'));
     }
 }

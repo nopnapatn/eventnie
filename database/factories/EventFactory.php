@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -28,6 +29,8 @@ class EventFactory extends Factory
             'max_attendees' => $this->faker->numberBetween(10, 100),
             'is_full' => $this->faker->boolean(),
             'status' => $this->faker->randomElement(['active', 'got problem']),
+            'creator_id' => User::inRandomOrder()->first()->id,
+            // 'organizer_id' => User::inRandomOrder()->first()->id,
             // 'creator_id' => $this->faker->numberBetween(1, 10),
         ];
     }

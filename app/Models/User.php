@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -49,8 +49,24 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function events()
-    {
+    public function ownedEvents() {
         return $this->hasMany(Event::class);
     }
+
+    public function attendedEvents() : BelongsToMany
+    {
+        return $this->belongsToMany(Event::class, 'attendees');
+    }
+
+    public function memberEvents() : BelongsToMany
+    {
+        return $this->belongsToMany(Event::class, 'members');
+    }
+
+    // public function events() : BelongsToMany
+    // {
+    //     return $this->belongsToMany(Event::class)
+    //     ->withPivot('description', 'img_url', 'video_url')
+    //     ->withTimestamps();
+    // }
 }

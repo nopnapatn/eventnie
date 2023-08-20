@@ -13,6 +13,7 @@ class EventSeeder extends Seeder
      */
     public function run(): void
     {
+        $this->call(UserSeeder::class);
         Event::factory()
             ->count(6)
             ->create();

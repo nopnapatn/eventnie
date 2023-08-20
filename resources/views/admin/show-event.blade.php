@@ -8,7 +8,7 @@
     <!-- content -->
     <div class="px-16 w-full">
         <!-- section 1 -->
-        <x-section-1></x-section-1>
+        
 
         <!-- section 2 -->
         <div class="bg-black rounded-lg opacity-90 h-96 px-48">
@@ -18,11 +18,7 @@
                 </div>
                 <div class="h-full w-full px-8 py-8">
                     <span class="font-semibold text-4xl text-white">{{ $event->title }}</span><br><br>
-                    <span class="text-white">Mon, 27 Jan 2023</span><br>
-                    <span class="text-red-400 text-xs">1 day left!</span><br><br>
-                    <a href="{{ route('events.join', ['event' => $event]) }}">
-                    <button class="bg-white rounded-lg h-10 w-24">Join Event</button>
-                    </a>
+                    <span class="text-white">Mon, 27 Jan 2023 (mocked) </span><br>
                 </div>
             </div>
         </div>

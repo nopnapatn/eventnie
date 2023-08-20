@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Policies\AdminPolicy;
 use App\Policies\EventPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -27,6 +28,10 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        $this->registerPolicies();
+
+        Gate::define('join-event', function ($user) {
+            return $user !== null; // Allow access if the user is authenticated
+        });
     }
 }
