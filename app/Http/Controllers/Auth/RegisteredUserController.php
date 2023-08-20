@@ -47,16 +47,16 @@ class RegisteredUserController extends Controller
         $path = '';
             if ($request->hasFile('image_path')) {
 		// บันทึกไฟล์รูปภาพลงใน folder ชื่อ 'user_images' ที่ storage/app/public
-		$path = $request->file('image_path')->store('images/profile', 'public');
+    $path = $request->file('image_path')->store('images/profile', 'public');
             }
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'faculty'=> $request->faculty,
-            'year'=> $request->college_year,
+            'college_year'=> $request->college_year,
             'studentID'=> $request->StudentID,
-            'image_path'=> $path,
+            'profile_picture'=> $path,
             'phoneNumber'=> $request->phoneNumber,
             
         ]);

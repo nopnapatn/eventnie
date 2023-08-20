@@ -5,12 +5,24 @@ namespace App\Http\Controllers;
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+    public function updatePosition(Request $request, Task $task)
+    {
+        // ดึงค่าตำแหน่งใหม่ที่ถูกส่งมาจากคำขอ
+        $newPosition = $request->input('position');
+
+        // อัพเดตตำแหน่งของ Task
+        $task->update(['position' => $newPosition]);
+
+        // ส่งคำตอบกลับว่าอัพเดตสำเร็จ
+        return response()->json(['message' => 'Position updated successfully']);
+    }
     public function index()
     {
         $tasks = auth()->user()->tasks; // ดึงรายการงานของผู้ใช้ปัจจุบัน
@@ -20,9 +32,19 @@ class TaskController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $user = Auth::user(); // ผู้ใช้ที่สร้าง Task
+
+        $task = new Task([
+            'title' => $request->input('title'),
+            'description' => $request->input('description'),
+            'creator_email' => $user->email,
+        ]);
+
+        $task->save();
+
+        // ...
     }
 
     /**
@@ -55,15 +77,22 @@ class TaskController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Task $task)
+    public function update(Request $request, $id)
     {
-        // ตรวจสอบว่าผู้ใช้ปัจจุบันเป็นเจ้าของงาน
-        if (auth()->user()->email === $task->email) {
-            $task->update($request->only('title', 'description'));
-            return redirect()->route('tasks.index');
+        $task = Task::findOrFail($id);
+
+        // ตรวจสอบสิทธิ์การแก้ไข Task โดยตรวจสอบว่าผู้ใช้เป็นคนสร้างหรือแต่ละกัน
+        if ($task->creator_email != Auth::user()->email) {
+            return redirect()->back()->with('error', 'You do not have permission to edit this task.');
         }
 
-        return redirect()->route('tasks.index');
+        $task->update([
+            'title' => $request->input('title'),
+            'description' => $request->input('description'),
+            'position' => $request->input('position'),
+        ]);
+
+        // ...
     }
 
     /**

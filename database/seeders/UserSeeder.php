@@ -22,7 +22,6 @@ class UserSeeder extends Seeder
         $user->phoneNumber = "000000000";
         $user->studentID = '0000000000';
         $user->faculty = 'Admin';
-        $user->year = 0;
         $user->major = 'Admin';
         $user->college_year = 0;
         $user->is_admin = true;
@@ -37,7 +36,6 @@ class UserSeeder extends Seeder
         $user->phoneNumber = "1111111111";
         $user->studentID = '1111111111';
         $user->faculty = 'User';
-        $user->year = 0;
         $user->major = 'User';
         $user->college_year = 0;
         $user->is_admin = false;

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('name');
             $table->string('faculty');
-            $table->integer('year');
+            // $table->integer('year');
             $table->string('studentID');
             // $table->string('image_path');
             $table->string('phoneNumber');
@@ -26,7 +26,7 @@ return new class extends Migration
 
             // $table->string('student_id');
             // $table->string('faculty');
-            $table->string('major');
+            $table->string('major')->nullable();
             $table->string('college_year');
             // $table->string('phone_number');
             $table->string('allergic_food')->nullable();

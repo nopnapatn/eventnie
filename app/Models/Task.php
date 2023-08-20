@@ -7,11 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Task extends Model
 {
-    protected $fillable = ['title', 'description', 'email'];
+    protected $fillable = ['title', 'description', 'creator_email', 'assignee_email'];
 
- public function user()
+    public function creator()
     {
-        return $this->belongsTo(User::class, 'email', 'email'); // ระบุความสัมพันธ์ด้วย email
+        return $this->belongsTo(User::class, 'creator_email', 'email');
+    }
+
+    public function assignee()
+    {
+        return $this->belongsTo(User::class, 'assignee_email', 'email');
     }
 }
 

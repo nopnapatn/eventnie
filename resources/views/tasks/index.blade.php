@@ -3,13 +3,6 @@
  @section('content')
  <script src="{{ asset('build/assets/drag.js') }}" defer></script>
  <script src="{{ asset('build/assets/todo.js') }}" defer></script>
- @foreach ($tasks as $task)
- <p>{{ $task->title }}</p>
- @can('editTask', $task)
- <a href="{{ route('tasks.edit', $task) }}">Edit</a>
- @endcan
- @endforeach
-
  <section>
 
    <div class="board">
@@ -22,22 +15,33 @@
        <div class="swim-lane" id="todo-lane">
          <h3 class="heading">TODO</h3>
 
-         <p class="task" draggable="true">Get groceries</p>
-         <p class="task" draggable="true">Feed the dogs</p>
-         <p class="task" draggable="true">Mow the lawn</p>
+         <p class="task" draggable="true">ส่งเอกสารให้ทางภาควิชา</p>
+         <p class="task" draggable="true">ดำเนินการติดต่อขอสปอนเซอร์</p>
+         <p class="task" draggable="true">นัดเรียกทีมงานประชุม</p>
        </div>
 
        <div class="swim-lane">
          <h3 class="heading">Doing</h3>
 
-         <p class="task" draggable="true">Binge 80 hours of Game of Thrones</p>
+         <p class="task" draggable="true">รอฝ่ายประชาสัมพันธ์แจ้งข่าวให้ทางมหาวิทยาลัย</p>
+         <p class="task" draggable="true">ฝ่ายโสตติดต่อยืมกล้องถ่ายรูป</p>
+         <p class="task" draggable="true">เตรียมสคริปต์ให้พิธีกร</p>
        </div>
 
        <div class="swim-lane">
          <h3 class="heading">Done</h3>
 
          <p class="task" draggable="true">
-           Watch video of a man raising a grocery store lobster as a pet
+           คณะกรรมการประชุมเตรียมตัว
+         </p>
+         <p class="task" draggable="true">
+           ติดต่อเรื่องสถานที่
+         </p>
+         <p class="task" draggable="true">
+           เตรียมเอกสารประชุม
+         </p>
+         <p class="task" draggable="true">
+           ออกแบบโปสเตอร์
          </p>
        </div>
      </div>
