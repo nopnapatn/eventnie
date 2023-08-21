@@ -12,10 +12,15 @@ class Event extends Model
 {
     use HasFactory, SoftDeletes;
 
-    public function organizer() : BelongsTo
+    public function creator() : BelongsTo
     {
         return $this->belongsTo(User::class, 'creator_id');
     }
+
+    // public function creator() : BelongsTo
+    // {
+    //     return $this->belongsTo(User::class);
+    // }
     
     public function attendees() : BelongsToMany
     {

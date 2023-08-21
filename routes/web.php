@@ -117,9 +117,28 @@ Route::post(
     ]
 )->name('event.join');
 
-// my events
+// attended events
 
 Route::get(
     '/user-events',
     [EventController::class, 'userEvents']
 )->name('events.user_events');
+
+// my created events
+
+Route::get(
+    '/my-events',
+    [EventController::class, 'myEvents']
+)->name('events.my_events');
+
+// staff
+
+Route::get(
+    '/staff/{event}/staff-members', 
+    [EventController::class, 'showStaffMembers'])
+->name('staff.staffMembers');
+
+Route::post(
+    '/staff/{event}/add-staff-member', 
+    [EventController::class, 'addStaffMember'])
+->name('staff.addStaffMember');
