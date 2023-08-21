@@ -4,7 +4,7 @@
     <section class="flex">
         <!-- content -->
         <div class="px-40 w-full">
-            <h2 class="font-semibold text-2xl mb-4">{{ $event->title }} - Staff Members</h2>
+            <h2 class="font-semibold text-2xl mb-4">{{ $event->title }}</h2>
             
             <ul>
                 @foreach ($eventStaffs as $staffMember)
@@ -23,6 +23,32 @@
                     <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Add Member</button>
                 </form>
             </div>
+
+            <div class="mt-4">
+                <h2 class="font-semibold text-2xl mb-4">Event Attendees</h2>
+                <p>{{ $event->attendees->count() }} / {{ $event->max_attendees }} Attendees</p>
+                <ul>
+                    @foreach ($event->attendees as $attendee)
+                        <li>{{ $attendee->name }} ({{ $attendee->email }})</li>
+                    @endforeach
+                </ul>
+            </div>
+
+            <div class="mt-4">
+                <h2 class="font-semibold text-2xl mb-4">Expenses</h2>
+                <ul>
+                    @foreach ($event->expenses as $expense)
+                        <li>
+                            <strong>{{ $expense->title }}</strong>
+                            <p>{{ $expense->description }}</p>
+                            {{-- <a href="{{ asset($expense->file_path) }}" target="_blank">Download Expense</a> --}}
+                            <a href="{{ route('expenses.download', ['expense' => $expense]) }}" target="_blank">Download Expense</a>
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
+
+            <a href="{{ route('events.expenses.upload', ['event' => $event]) }}">Upload Expense</a>
         </div>
-    </section>
+    </section> 
 @endsection

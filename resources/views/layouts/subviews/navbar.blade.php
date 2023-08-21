@@ -76,7 +76,7 @@
                         <a href="{{ route('user.index') }}" class="text-gray-900 hover:underline">Profile</a>
                     </li>
                     <li>
-                        <a href="" class="text-gray-900 hover:underline">Certification</a>
+                        <a href="{{ route('certifications.show') }}" class="text-gray-900 hover:underline">Certification</a>
                     </li>
                     @endauth
                 </ul>

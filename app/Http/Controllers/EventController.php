@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\Expense;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
 
 class EventController extends Controller
@@ -197,6 +199,30 @@ class EventController extends Controller
         ]);
     }
 
+    // public function joinEvent(Request $request, Event $event)
+    // {
+    //     if (Gate::denies('join-event')) {
+    //         abort(403, 'You must be logged in to join an event.');
+    //     }
+
+    //     $user = Auth::user();
+
+    //     // Check if the user is already an attendee
+    //     $userIsAttendee = $event->attendees()->where('user_id', $user->id)->exists();
+
+    //     if (!$userIsAttendee) {
+    //         $data = [
+    //             'description' => $request->input('description'),
+    //             'img_url' => $this->uploadImageAndGetUrl($request->file('photo')),
+    //             'video_url' => $request->input('video_url'),
+    //         ];
+    //         $event->attendees()->attach($user, $data);
+    //     }
+
+    //     return redirect()->route('events.index', ['event' => $event->id])
+    //         ->with('success', 'You have successfully joined the event.');
+    // }
+
     public function joinEvent(Request $request, Event $event)
     {
         if (Gate::denies('join-event')) {
@@ -208,18 +234,31 @@ class EventController extends Controller
         // Check if the user is already an attendee
         $userIsAttendee = $event->attendees()->where('user_id', $user->id)->exists();
 
-        if (!$userIsAttendee) {
-            $data = [
-                'description' => $request->input('description'),
-                'img_url' => $this->uploadImageAndGetUrl($request->file('photo')),
-                'video_url' => $request->input('video_url'),
-            ];
-            $event->attendees()->attach($user, $data);
+        if ($userIsAttendee) {
+            return redirect()->route('events.index', ['event' => $event->id])
+                ->with('error', 'You are already an attendee of this event.');
         }
+
+        $currentAttendees = $event->attendees()->count();
+        $maxAttendees = $event->max_attendees;
+
+        if ($currentAttendees >= $maxAttendees) {
+            return redirect()->route('events.index', ['event' => $event->id])
+                ->with('error', 'Sorry, the event is already full. You cannot join.');
+        }
+
+        $data = [
+            'description' => $request->input('description'),
+            'img_url' => $this->uploadImageAndGetUrl($request->file('photo')),
+            'video_url' => $request->input('video_url'),
+        ];
+
+        $event->attendees()->attach($user, $data);
 
         return redirect()->route('events.index', ['event' => $event->id])
             ->with('success', 'You have successfully joined the event.');
     }
+
 
     protected function uploadImageAndGetUrl($image)
     {
@@ -300,5 +339,51 @@ class EventController extends Controller
             ->get();
 
         return view('staff.index', compact('associatedEvents'));
+    }
+
+    public function showExpenseUploadView(Event $event)
+    {
+        return view('events.create-expense', compact('event'));
+    }
+
+    public function uploadExpense(Request $request, Event $event)
+    {
+        $this->validate($request, [
+            'title' => 'required|string',
+            'description' => 'required|string',
+            'expense_file' => 'required|file|mimes:pdf,doc,docx|max:2048', // Adjust the allowed file types and max size
+        ]);
+
+        $uploadedFile = $request->file('expense_file');
+        $filePath = Storage::putFile('expenses', $uploadedFile); // Store the file in the "expenses" disk
+
+        $expense = new Expense([
+            'title' => $request->input('title'),
+            'description' => $request->input('description'),
+            'file_path' => $filePath,
+        ]);
+
+        $event->expenses()->save($expense);
+
+        return redirect()->route('staff.staffMembers', ['event' => $event])
+            ->with('success', 'Expense uploaded successfully.');
+
+        // return redirect()->back()->with('success', 'Expense uploaded successfully.');
+    }
+
+    public function downloadExpense(Expense $expense)
+    {
+        $filePath = storage_path('app/' . $expense->file_path);
+
+        // Get the original file name from the file path
+        $fileName = pathinfo($filePath, PATHINFO_BASENAME);
+
+        // Set the appropriate content type for the file
+        $headers = [
+            'Content-Type' => mime_content_type($filePath),
+            'Content-Disposition' => 'attachment; filename="' . $fileName . '"',
+        ];
+
+        return Response::download($filePath, $fileName, $headers);
     }
 }
