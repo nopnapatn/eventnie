@@ -18,6 +18,20 @@ class EventController extends Controller
     {
         // Gate::authorize('viewAny', Event::class);
 
+        if (Auth::user() != null) {
+            $user = Auth::user();
+
+            // Get the IDs of events the user has attended
+            $attendedEventIds = $user->attendedEvents->pluck('id');
+
+            // Retrieve events that the user hasn't attended yet
+            $events = Event::whereNotIn('id', $attendedEventIds)->get();
+
+            return view('events.index', [
+                'events' => $events,
+            ]);
+        }
+
         $events = Event::get();
         return view('events.index', [
             'events' => $events,
@@ -84,12 +98,20 @@ class EventController extends Controller
     }
 
 
-    /**
+    /** 
      * Display the specified resource.
      */
     public function show(Event $event)
     {
         // Gate::authorize('view', $event);
+        if (Auth::user() != null) {
+            $user = Auth::user();
+            $userIsAttendee = $event->attendees()->where('user_id', $user->id)->exists();
+            return view('events.show', [
+                'event' => $event,
+                'userIsAttendee' => $userIsAttendee, // Pass the variable to the view
+            ]);
+        }
 
         return view('events.show', [
             'event' => $event,

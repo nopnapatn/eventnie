@@ -53,6 +53,9 @@
                     </li>
                     @Auth
                     <li>
+                        <a href="{{ route('events.user_events') }}" class="text-gray-900 hover:underline">Attended Events</a>
+                    </li>
+                    <li>
                         <a href="{{ route('user.index') }}" class="text-gray-900 hover:underline">Profile</a>
                     </li>
                     <li>
