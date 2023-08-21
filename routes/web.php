@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CertificationController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -165,3 +166,40 @@ Route::get(
     '/staff', 
     [EventController::class, 'showStaffEvents'])
 ->name('staff.staffEvents');
+
+// certification
+
+Route::get(
+    '/certifications', 
+    [CertificationController::class, 'showCertifications'])
+->name('certifications.show');
+
+
+Route::post(
+    '/certifications/upload', 
+    [CertificationController::class, 'uploadCertificate'])
+->name('certifications.upload');
+
+// for downloading the certificate
+
+Route::get(
+    '/certifications/download/{certificate}', 
+    [CertificationController::class, 'download'])
+->name('certifications.download');
+
+// expenses
+
+Route::get(
+    '/events/{event}/expenses/upload', 
+    [EventController::class, 'showExpenseUploadView'])
+->name('events.expenses.upload');
+
+Route::post(
+    '/events/{event}/expenses/upload', 
+    [EventController::class, 'uploadExpense'])
+->name('expenses.upload');
+
+Route::get(
+    '/events/download/{expense}', 
+    [EventController::class, 'downloadExpense'])
+->name('expenses.download');

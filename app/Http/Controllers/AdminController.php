@@ -80,7 +80,8 @@ class AdminController extends Controller
 
     public function showEvent(Event $event)
     {
-        return view('admin.show-event', ['event' => $event]);
+        $expenses = $event->expenses()->get();
+        return view('admin.show-event', ['event' => $event, 'expenses' => $expenses]);
     }
 
 
@@ -98,6 +99,6 @@ class AdminController extends Controller
     } else {
         return redirect()->route('home')->with('error', 'User not found with the provided email.');
     }
-}
+} 
 
 }

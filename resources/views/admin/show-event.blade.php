@@ -67,6 +67,25 @@
                 </div>
             </dl>
         </div>
+
+        <!-- Display Expenses -->
+        <div class="py-4">
+            <h2 class="font-semibold text-2xl mb-4">Expenses</h2>
+            @if ($event->expenses->isEmpty())
+                <p>No expenses have been added for this event.</p>
+            @else
+                <ul>
+                    @foreach ($event->expenses as $expense)
+                        <li>
+                            <strong>{{ $expense->title }}</strong>
+                            <p>{{ $expense->description }}</p>
+                            <a href="{{ asset($expense->file_path) }}" target="_blank">Download Expense</a>
+                        </li>
+                    @endforeach
+                </ul>
+            @endif
+        </div>
+
     </div>
 </section>
 @endsection
