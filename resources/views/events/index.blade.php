@@ -10,7 +10,7 @@
                 <div class="items-end justify-between sm:flex">
                     <div class="max-w-xl">
                         <h2 class="text-4xl font-bold tracking-tight sm:text-5xl">
-                            Read trusted reviews from our customers
+                            กิจกรรมทั้งหมด มาเข้าร่วมกิจกรรมกัน!
                         </h2>
 
                         <p class="mt-8 max-w-lg text-gray-500">
@@ -101,7 +101,7 @@
                                     <p class="text-sm font-medium uppercase tracking-widest text-red-400">End!! {{ date('d-m-Y', strtotime($event->end_at)) }}</p>
                                     <h3 class="mt-4 text-xl font-medium sm:text-2xl text-white">{{ $event->title }}</h3>
 
-                                    <p class="mt-4 text-sm sm:text-base text-white">{{ $event->description }}</p>
+                                    <p class="mt-4 text-sm sm:text-base text-white text-ellipsis overflow-hidden line-clamp-4">{{ $event->description }}</p>
 
                                     <p class="mt-8 font-bold text-white">Read more</p>
                                 </div>

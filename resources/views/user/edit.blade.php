@@ -8,7 +8,7 @@
             @csrf
             @method('PUT')
 
-            <div class="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8 py-8">
+            <div class="grid grid-cols-1 gap-2 lg:grid-cols-3 lg:gap-8 py-8">
                 <div class="">
                     <div class="border-4 border-black h-64 w-64 shadow-xl">
 
@@ -24,7 +24,7 @@
                         <dl class="-my-3 divide-y divide-gray-100 text-sm">
                             <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
                                 <dt class="font-medium text-gray-900">Name</dt>
-                                <input class="text-gray-700 sm:col-span-2 rounded-lg border border-black h-8" type="name" name="name" id="name">
+                                <textarea class="w-full rounded-lg border-gray-200 align-top shadow-sm sm:text-sm" rows="1" type="name" name="name" id="name" placeholder="{{ Auth::user()->name }}"></textarea>
                             </div>
 
                             <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
@@ -48,29 +48,24 @@
                             </div>
 
                             <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
-                                <dt class="font-medium text-gray-900">Major</dt>
-                                <dd class="text-gray-700 sm:col-span-2">{{ Auth::user()->major }}</dd>
-                            </div>
-
-                            <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
                                 <dt class="font-medium text-gray-900">College Year</dt>
                                 <dd class="text-gray-700 sm:col-span-2">{{ Auth::user()->college_year }}</dd>
                             </div>
 
                             <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
                                 <dt class="font-medium text-gray-900">Phone Number</dt>
-                                <input class="text-gray-700 sm:col-span-2 rounded-lg border border-black h-8" type="phoneNumber" name="phoneNumber" id="phoneNumber">
+                                <textarea class="w-full rounded-lg border-gray-200 align-top shadow-sm sm:text-sm" rows="1" type="phoneNumber" name="phoneNumber" id="phoneNumber" placeholder="{{ Auth::user()->phoneNumber }}"></textarea>
                             </div>
 
 
-                            <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+                            <div class=" grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
                                 <dt class="font-medium text-gray-900">Allergic Food</dt>
-                                <input class="text-gray-700 sm:col-span-2 rounded-lg border border-black h-8" type="allergic_food" name="allergic_food" id="allergic_food">
+                                <textarea class="w-full rounded-lg border-gray-200 align-top shadow-sm sm:text-sm" rows="1" type="allergic_food" name="allergic_food" id="allergic_food" placeholder="{{ Auth::user()->allergic_food }}"></textarea>
                             </div>
 
-                            <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+                            <div class=" grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
                                 <dt class="font-medium text-gray-900">bio</dt>
-                                <input class="text-gray-700 sm:col-span-2 rounded-lg border border-black h-8" type="bio" name="bio" id="bio">
+                                <textarea class="w-full rounded-lg border-gray-200 align-top shadow-sm sm:text-sm" rows="4" type="bio" name="bio" id="bio" placeholder="{{ Auth::user()->bio }}"></textarea>
                             </div>
                         </dl>
                     </div>
