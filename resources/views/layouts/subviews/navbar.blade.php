@@ -55,13 +55,22 @@
                     @Auth
                     @if (Auth::user()->can_create_event)
                     <li>
-                        <a href="{{ route('events.my_events') }}" class="text-gray-900 hover:underline">My
-                            Events</a>
+                        <a href="{{ route('events.my_events') }}" class="text-gray-900 hover:underline">
+                            My Events
+                        </a>
                     </li>
                     @endif
+
                     <li>
                         <a href="{{ route('events.user_events') }}" class="text-gray-900 hover:underline">Attended
-                            Events</a>
+                            Events
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('staff.staffEvents') }}" class="text-gray-900 hover:underline">
+                            Staff
+                        </a>
                     </li>
                     <li>
                         <a href="{{ route('user.index') }}" class="text-gray-900 hover:underline">Profile</a>

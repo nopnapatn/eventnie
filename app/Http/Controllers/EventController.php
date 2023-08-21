@@ -264,29 +264,41 @@ class EventController extends Controller
     }
 
     public function addStaffMember(Request $request, Event $event)
-{
-    // Validate the incoming data
-    $validatedData = $request->validate([
-        'email' => 'required|email|exists:users,email',
-    ]);
+    {
+        // Validate the incoming data
+        $validatedData = $request->validate([
+            'email' => 'required|email|exists:users,email',
+        ]);
 
-    // Find the user based on the provided email
-    $user = User::where('email', $validatedData['email'])->first();
+        // Find the user based on the provided email
+        $user = User::where('email', $validatedData['email'])->first();
 
-    if (!$user) {
-        return redirect()->back()->withErrors(['email' => 'User with this email not found.']);
+        if (!$user) {
+            return redirect()->back()->withErrors(['email' => 'User with this email not found.']);
+        }
+
+        // Check if the user is already a staff member
+        if ($event->member->contains($user->id)) {
+            return redirect()->back()->withErrors(['email' => 'User is already a staff member.']);
+        }
+
+        // Add the user as a staff member to the event
+        $event->member()->attach($user);
+
+        return redirect()->route('staff.staffMembers', ['event' => $event])
+            ->with('success', 'Staff member added successfully.');
     }
 
-    // Check if the user is already a staff member
-    if ($event->member->contains($user->id)) {
-        return redirect()->back()->withErrors(['email' => 'User is already a staff member.']);
+    public function showStaffEvents()
+    {
+        $user = auth()->user();
+
+        $associatedEvents = Event::where('creator_id', $user->id)
+            ->orWhereHas('member', function ($query) use ($user) {
+                $query->where('user_id', $user->id);
+            })
+            ->get();
+
+        return view('staff.index', compact('associatedEvents'));
     }
-
-    // Add the user as a staff member to the event
-    $event->member()->attach($user);
-
-    return redirect()->route('staff.staffMembers', ['event' => $event])
-        ->with('success', 'Staff member added successfully.');
-}
-
 }

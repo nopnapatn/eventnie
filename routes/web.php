@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [EventController::class, 'welcome']);
+Route::get('/', [EventController::class, 'welcome'])->name('home');
 
 // Route::get('/', function () {
 //     return view('/admin/index');
@@ -89,7 +89,21 @@ Route::put(
     [AdminController::class, 'revokePermission']
 )->name('admin.revoke_permission');
 
+Route::get(
+    '/admin/users/{user}',
+    [AdminController::class, 'showUser']
+)->name('admin.show_user');
+
+Route::put(
+    '/admin/users/{user}',
+    [AdminController::class, 'revokePermission2']
+)->name('admin.revoke_permission2');
+
+// ...
+
+
 // user
+
 Route::get('/user', [UserController::class, 'index'])
     ->name('user.index');
 
@@ -142,3 +156,12 @@ Route::post(
     '/staff/{event}/add-staff-member', 
     [EventController::class, 'addStaffMember'])
 ->name('staff.addStaffMember');
+
+// Route::delete(
+//     '/staff/{event}/remove-staff-member', 
+//     [EventController::class, 'removeStaffMember']);
+
+Route::get(
+    '/staff', 
+    [EventController::class, 'showStaffEvents'])
+->name('staff.staffEvents');

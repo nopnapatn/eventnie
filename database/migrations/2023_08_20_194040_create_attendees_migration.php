@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(User::class);
             $table->foreignIdFor(Event::class);
-            $table->string('description'); // attendee's description
+            $table->string('description')->nullable(); // attendee's description
             $table->string('img_url')->nullable(); // attendee's register image
             $table->string('video_url')->nullable(); // attendee's register video
             $table->timestamps();
