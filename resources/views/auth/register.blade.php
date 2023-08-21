@@ -1,18 +1,17 @@
 @extends('layouts.main')
 
 @section('content')
-<section class="">
-    <div class="flex justify-center items-center h-screen">
-        <div class="h-fit w-3/12">
+<section class="px-40 w-full">
+    <div class="flex justify-center items-center h-screen py-8">
+        <div class="h-fit p-16 px-20 border-4 border-black shadow-lg rounded-xl">
             <form method="POST" enctype="multipart/form-data" action="{{ route('register') }}">
                 @csrf
                 <!-- Name -->
                 <div>
-                    <x-input-label for="name" :value="__('Name-Lastname')" />
+                    <x-input-label for="name" :value="__('Name')" />
                     <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
                     <x-input-error :messages="$errors->get('name')" class="mt-2" />
                 </div>
-
 
                 <!-- Email Address -->
                 <div class="mt-4">
@@ -20,9 +19,6 @@
                     <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
                     <x-input-error :messages="$errors->get('email')" class="mt-2" />
                 </div>
-
-
-
 
                 <!-- Password -->
                 <div class="mt-4">
@@ -41,6 +37,7 @@
 
                     <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                 </div>
+
                 <!-- Faculty -->
                 <div>
                     <x-input-label for="faculty" :value="__('Faculty')" />

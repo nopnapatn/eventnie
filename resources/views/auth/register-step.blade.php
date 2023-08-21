@@ -1,9 +1,9 @@
 @extends('layouts.main')
 
 @section('content')
-<section class="">
+<section class="px-40 w-full">
     <div class="flex justify-center items-center h-screen">
-        <div class="h-1/2 w-3/12">
+        <div class="h-1/2 w-3/12 border-4 border-black">
             <form method="POST" action="{{ route('register') }}">
                 @csrf
                 <!-- Faculty -->

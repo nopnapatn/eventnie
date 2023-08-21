@@ -173,6 +173,7 @@ class EventController extends Controller
         // Gate::authorize('viewAny', Event::class);
 
         $events = Event::get();
+        $events_welcome = Event::take(5)->get();
         $users = User::get();
         if (Gate::allows('isAdmin', auth()->user())) {
             return view('/admin/index', [
@@ -181,7 +182,7 @@ class EventController extends Controller
             ]);
         } else {
             return view('welcome', [
-                'events' => $events,
+                'events' => $events_welcome,
             ]);
         }
     }

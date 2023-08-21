@@ -35,7 +35,7 @@ class UserFactory extends Factory
             'bio' => fake()->paragraph(),
             'profile_picture' => fake()->image('public/storage/', 800, 600, null, false),
 
-            'is_admin' => false,
+            'is_admin' => true,
             'can_create_event' => false,
 
             // 'created_at' => now(),

@@ -1,6 +1,6 @@
-<nav class="bg-white px-40">
-    <div class="border-b-4 border-black h-fit w-full">
-        <div class="pt-4 boder-x border-black">
+<nav class="bg-white rounded-lg px-40">
+    <div class="h-fit w-full">
+        <div class="pt-4">
             <div class="flex item-center">
 
                 <!-- logo -->

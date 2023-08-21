@@ -10,13 +10,15 @@
 </head>
 
 <body>
+
     @include('layouts.subviews.navbar')
-
-    <main class="bg-white min-h-screen">
-        @yield('content')
+    <main class="bg-white py-8 px-40 min-h-screen">
+        <div class="bg-white h-full w-full rounded-xl border-4 border-black shadow-xl">
+            @yield('content')
+        </div>
     </main>
-
     @include('layouts.subviews.footer')
+
 </body>
 
 </html>

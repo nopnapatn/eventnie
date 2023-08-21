@@ -2,52 +2,70 @@
 
 @section('content')
 <section class="flex">
-    <!-- menu bar -->
-    <x-aside-bar></x-aside-bar>
-
     <!-- content -->
-    <div class="px-16 w-full">
-        <!-- section 1 -->
-        
-
-        <!-- section 2 -->
-        <div class="bg-black rounded-lg opacity-90 h-96 px-48">
-            <div class="flex justify-around h-full w-full">
-                <div class="flex h-full w-full">
-                    <img src="{{ asset('storage/' . $event->image_path) }}" alt="Event Image" class="bg-cover bg-center">
+    <div class="px-40 w-full">
+        <div class="py-4"></div>
+        <!-- section -->
+        <div class="">
+            <span class="font-semibold text-6xl text-black">{{ $event->title }}</span>
+            <div class="py-2"></div>
+            <div class="bg-black h-10 w-full flex items-center shadow-xl">
+                <span class="text-white">START {{ date('d-m-Y', strtotime($event->start_at)) }}</span>
+                <span>\t</span>
+                <span class="text-white">END {{ date('d-m-Y', strtotime($event->end_at)) }}</span>
+                <span>\t</span>
+                <span class="text-white">LOCATION {{ $event->location }}</span>
+            </div>
+            <div class="py-4"></div>
+            <div class="flex">
+                <div class="border-4 border-black h-96 w-2/3 shadow-xl">
+                    <img src="{{ asset('storage/' . $event->image_path) }}" alt="Event Image" class="bg-cover bg-center h-full w-full">
                 </div>
-                <div class="h-full w-full px-8 py-8">
-                    <span class="font-semibold text-4xl text-white">{{ $event->title }}</span><br><br>
-                    <span class="text-white">Mon, 27 Jan 2023 (mocked) </span><br>
+                <div class="h-96 w-1/3 p-4">
+                    <span class="font-semibold text-4xl text-black">{{ $event->title }}</span><br><br>
+                    <span class="text-black">LOCATION {{ $event->location }}</span><br><br>
+                    <span class="text-black">START {{ date('d-m-Y', strtotime($event->start_at)) }}</span><br>
+                    <span class="text-red-400 text-xs">END {{ date('d-m-Y', strtotime($event->end_at)) }}</span><br><br>
                 </div>
             </div>
         </div>
-
-        <!-- section 3 -->
-        <div class="px-10 mx-32">
-            <div class="">
-                <div class="flex py-8 justify-between">
-                    <span class="font-semibold text-lg">Information</span>
+        <div class="py-4"></div>
+        <div class="bg-black h-1 w-full"></div>
+        <div class="py-4"></div>
+        <div class="flow-root">
+            <dl class="text-lg w-2/3">
+                <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+                    <dt class="font-medium text-gray-900">กิจกรรม</dt>
+                    <dd class="text-gray-700 sm:col-span-2">{{ $event->title }}</dd>
                 </div>
 
-                <div class="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8">
-                    <!-- section 1 -->
-                    <div class="lg:col-span-2 border-r border-black">
-                        <p>{{ $event->description }}</p><br>
-                        <p>{{ $event->location }}</p><br>
-                    </div>
-
-                    <!-- section 2 -->
-                    <div class="">
-                        <div class="">{{ $event->type }}</div>
-                        <div class="">{{ $event->contact }}</div>
-                        <div class="">{{ $event->start_at }}</div>
-                        <div class="">{{ $event->end_at }}</div>
-                        <div class="">0 / {{ $event->max_attendees }}</div>
-                    </div>
+                <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+                    <dt class="font-medium text-gray-900">ประเภท</dt>
+                    <dd class="text-gray-700 sm:col-span-2">{{ $event->type }}</dd>
                 </div>
-            </div>
 
+                <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+                    <dt class="font-medium text-gray-900">สถานที่</dt>
+                    <dd class="text-gray-700 sm:col-span-2">{{ $event->location }}</dd>
+                </div>
+
+                <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+                    <dt class="font-medium text-gray-900">วันที่จัด</dt>
+                    <dd class="text-gray-700 sm:col-span-2">{{ date('d-m-Y', strtotime($event->start_at)) }} ถึงวันที่
+                        {{ date('d-m-Y', strtotime($event->end_at)) }}
+                    </dd>
+                </div>
+
+                <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+                    <dt class="font-medium text-gray-900">คำอธิบาย</dt>
+                    <dd class="text-gray-700 sm:col-span-2">{{ $event->description }}</dd>
+                </div>
+
+                <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+                    <dt class="font-medium text-gray-900">ช่องทางการติดต่อ</dt>
+                    <dd class="text-gray-700 sm:col-span-2">{{ $event->contact }}</dd>
+                </div>
+            </dl>
         </div>
     </div>
 </section>

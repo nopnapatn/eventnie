@@ -1,12 +1,14 @@
 @extends('layouts.main')
 
 @section('content')
-<section class="">
+<section class="w-full">
     <div class="flex justify-center items-center h-screen">
-        <div class="h-1/2 w-3/12">
+        <div>
+
+        </div>
+        <div class="rounded-xl border-4 border-black w-6/12 p-16">
             <form method="POST" action="{{ route('login') }}">
                 @csrf
-
                 <!-- Email Address -->
                 <div class="">
                     <x-input-label for="email" :value="__('Email')" />
