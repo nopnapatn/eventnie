@@ -17,15 +17,45 @@
                 <span class="text-white">LOCATION {{ $event->location }}</span>
             </div>
             <div class="py-4"></div>
-            <div class="flex">
-                <div class="rounded-lg border-4 border-black h-96 w-2/3 shadow-xl">
+            <div class="flex justify-center">
+                <div class="rounded-lg border-4 border-black h-96 w-1/3 shadow-xl">
                     <img src="{{ asset('storage/' . $event->image_path) }}" alt="Event Image" class="bg-cover bg-center h-full w-full">
                 </div>
                 <div class="h-96 w-1/3 p-4">
                     <span class="font-semibold text-4xl text-black">{{ $event->title }}</span><br><br>
                     <span class="text-black">LOCATION {{ $event->location }}</span><br><br>
-                    <span class="text-black">START {{ date('d-m-Y', strtotime($event->start_at)) }}</span><br>
-                    <span class="text-red-400 text-xs">END {{ date('d-m-Y', strtotime($event->end_at)) }}</span><br><br>
+                    <span class="text-black">START {{ date('d/m/Y', strtotime($event->start_at)) }}</span><br>
+                    <div class="flex items-center">
+                        <span class="text-2xl text-red-500 font-semibold">END</span><br>
+                        <div id="countdown-timer" class="py-4">
+                            <div id="countdown" class="text-2xl text-red-500 font-semibold"></div>
+                        </div>
+                        <script>
+                            // Set the end date and time of the event
+                            const eventEndDate = new Date("{{ $event->end_at }}").getTime();
+
+                            // Update the countdown every 1 second
+                            const countdownInterval = setInterval(function() {
+                                const now = new Date().getTime();
+                                const timeLeft = eventEndDate - now;
+
+                                if (timeLeft <= 0) {
+                                    // Event has ended, you can display a message here if needed
+                                    document.getElementById("countdown").innerHTML = "Event has ended.";
+                                    clearInterval(countdownInterval);
+                                } else {
+                                    // Calculate days, hours, minutes, and seconds left
+                                    const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                                    const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                                    const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                                    const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+                                    // Display the countdown timer
+                                    document.getElementById("countdown").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+                                }
+                            }, 1000);
+                        </script>
+                    </div>
 
                     @auth
                     @if (!$userIsAttendee)
@@ -64,8 +94,8 @@
 
                 <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
                     <dt class="font-medium text-gray-900">วันที่จัด</dt>
-                    <dd class="text-gray-700 sm:col-span-2">{{ date('d-m-Y', strtotime($event->start_at)) }} ถึงวันที่
-                        {{ date('d-m-Y', strtotime($event->end_at)) }}
+                    <dd class="text-gray-700 sm:col-span-2">{{ date('d/m/Y', strtotime($event->start_at)) }} ถึงวันที่
+                        {{ date('d/m/Y', strtotime($event->end_at)) }}
                     </dd>
                 </div>
 

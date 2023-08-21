@@ -1,4 +1,4 @@
-<nav class="bg-gray-100 rounded-lg px-40">
+<nav class="bg-white px-40">
     <div class="h-fit w-full">
         <div class="pt-4">
             <div class="flex item-center">
@@ -25,8 +25,7 @@
                                 <x-dropdown-link :href="route('logout')" onclick="event.preventDefault();
                                     this.closest('form').submit();">
                                     <div class="bg-black rounded-lg my-4">
-                                        <span class="text-white flex items-center justify-center h-10 w-24">Log
-                                            Out</span>
+                                        <span class="text-white flex items-center justify-center h-10 w-24">Log Out</span>
                                     </div>
                                 </x-dropdown-link>
                             </form>
@@ -44,7 +43,7 @@
                 </div>
             </div>
 
-            <div class="flex items-center py-4 w-full justify-between">
+            <div class="flex items-center w-full justify-between">
                 <ul class="flex flex-row font-medium mt-0 mr-6 space-x-8 text-sm">
                     <li>
                         <a href="{{ url('/') }}" class="text-gray-900 hover:underline" aria-current="page">Home</a>
@@ -81,11 +80,6 @@
                     @endauth
                 </ul>
                 <div class="flex">
-                    @if (Auth::check() && Auth::user()->can_create_event)
-                    <a href="{{ route('events.create') }}" class="">
-                        <span class="text-black flex items-center justify-center px-4">Create Event</span>
-                    </a>
-                    @endif
                     @Auth
                     <div class="">
                         <span class=" font-semibold">{{ Auth::user()->name }}</span>

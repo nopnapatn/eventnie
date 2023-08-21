@@ -8,8 +8,15 @@
         <!-- Other sections and content -->
 
         <!-- Join Event Section -->
-        <div class="p-10 py-40 mx-32 mt-8">
+        <div class="p-10 m-32 ">
+            <div class="flex items-center pr-16 py-4">
+                <span class="text-3xl">Join Event Card</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 rtl:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+            </div>
             <div class="border-4 border-black p-6 bg-white shadow-xl">
+
                 <h2 class="text-2xl font-semibold mb-4">Join Event</h2>
 
                 @if ($errors->any())
