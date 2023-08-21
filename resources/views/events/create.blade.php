@@ -33,9 +33,9 @@
             </div>
 
             <div class="mb-4">
-                <label for="contact" class="block text-lg font-semibold mb-2">max attendees</label>
-                <input type="number" name="max_attendees" id="max_attendees" class="w-full p-2 border rounded" required>
-            </div>
+                <label for="max_attendees" class="block text-lg font-semibold mb-2">Max Attendees</label>
+                <input type="number" name="max_attendees" id="max_attendees" class="w-full p-2 border rounded" required min="1">
+            </div>            
 
             <div class="mb-4">
                 <label for="start_at" class="block text-lg font-semibold mb-2">Event Start Date and Time</label>

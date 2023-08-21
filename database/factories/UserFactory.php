@@ -30,7 +30,7 @@ class UserFactory extends Factory
             'college_year' => fake()->numberBetween(1, 5),
             'phoneNumber' => fake()->phoneNumber(),
             'allergic_food' => Str::random(10),
-            'joined_event_count' => fake()->numberBetween(0, 10),
+            // 'joined_event_count' => fake()->numberBetween(0, 10),
 
             'bio' => fake()->paragraph(),
             'profile_picture' => fake()->image('public/storage/', 800, 600, null, false),

@@ -63,7 +63,7 @@ class EventController extends Controller
             'start_at' => 'required|date',
             'end_at' => 'required|date',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'max_attendees' => 'required|integer|min:0',
+            'max_attendees' => 'required|integer|min:1',
         ]);
 
         // if ($request->withErrors()) {
@@ -93,6 +93,9 @@ class EventController extends Controller
         $event->image_path = $validatedData['image_path'];
 
         $event->save();
+
+        $user = User::findOrFail(auth()->id());
+        $user->ownedEvents()->save($event);
 
         return redirect()->route('events.index');
     }
@@ -238,4 +241,51 @@ class EventController extends Controller
 
         return view('events.user-events', compact('attendedEvents'));
     }
+
+    public function myEvents()
+    {
+        $user = User::findOrFail(auth()->id());
+        $ownedEvents = $user->ownedEvents()->get();
+
+        return view('events.created-event', compact('ownedEvents'));
+    }
+
+    public function showStaffMembers(Event $event)
+    {
+        // // Make sure the user is the event owner before showing staff members
+        // if ($ownedEvent->creator_id != auth()->id()) {
+        //     abort(403, strval($ownedEvent->creator_id));
+        // }
+
+        $eventStaffs = $event->member()->get();
+
+        return view('staff.event_staff', compact('event', 'eventStaffs'));
+    }
+
+    public function addStaffMember(Request $request, Event $event)
+{
+    // Validate the incoming data
+    $validatedData = $request->validate([
+        'email' => 'required|email|exists:users,email',
+    ]);
+
+    // Find the user based on the provided email
+    $user = User::where('email', $validatedData['email'])->first();
+
+    if (!$user) {
+        return redirect()->back()->withErrors(['email' => 'User with this email not found.']);
+    }
+
+    // Check if the user is already a staff member
+    if ($event->member->contains($user->id)) {
+        return redirect()->back()->withErrors(['email' => 'User is already a staff member.']);
+    }
+
+    // Add the user as a staff member to the event
+    $event->member()->attach($user);
+
+    return redirect()->route('staff.staffMembers', ['event' => $event])
+        ->with('success', 'Staff member added successfully.');
+}
+
 }
