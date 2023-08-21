@@ -34,15 +34,18 @@
                 @foreach ($users as $user)
                     @if ($user->can_create_event)
                         <!-- User Card -->
-                        <div class="border border-gray-200 rounded shadow-md p-4 hover:bg-gray-50 transition duration-300">
-                            <h3 class="text-lg font-semibold mb-2">{{ $user->name }}</h3>
-                            <p class="text-sm text-gray-500">{{ $user->email }}</p>
-                        </div>
+                        <a href=" {{ route('admin.show_user', ['user' => $user]) }} ">
+                            <div
+                                class="border border-gray-200 rounded shadow-md p-4 hover:bg-gray-50 transition duration-300">
+                                <h3 class="text-lg font-semibold mb-2">{{ $user->name }}</h3>
+                                <p class="text-sm text-gray-500">{{ $user->email }}</p>
+                            </div>
+                        </a>
                     @endif
                 @endforeach
 
-                @if (count($events) === 0)
-                    <p class="text-gray-500">No progressing events.</p>
+                @if (count($users->where('can_create_event', true)) === 0)
+                    <p class="text-gray-500">No users with permission to create events.</p>
                 @endif
             </div>
 

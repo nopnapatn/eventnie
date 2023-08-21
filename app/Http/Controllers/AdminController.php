@@ -10,28 +10,6 @@ use Illuminate\Support\Facades\Gate;
 
 class AdminController extends Controller
 {
-    public function showGrantPermissionForm()
-    {
-        return view('admin.add-user-permission');
-        return view('grant-permission');
-    }
-
-    public function grantPermission(Request $request)
-    {
-        $request->validate([
-            'email' => 'required|email|exists:users,email',
-        ]);
-
-        $user = User::where('email', $request->get('email'))->first();
-
-        if ($user != null) {
-            $user->can_create_event = true;
-            $user->save();
-            return redirect()->route('admin.grant_permission')->with('success', 'Permission granted for' . $user->email);
-        } else {
-            return redirect()->route('admin.grant_permission')->with('error', 'User not found with the provided email.');
-        }
-    }
     public function grantViewPermission(Request $request)
     {
         $email = $request->input('email');
@@ -50,6 +28,28 @@ class AdminController extends Controller
         }
 
         return redirect()->back()->with('success', 'View permission granted successfully.');
+    }
+
+    public function showGrantPermissionForm()
+    {
+        return view('admin.add-user-permission');
+    }
+
+    public function grantPermission(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email|exists:users,email',
+        ]);
+
+        $user = User::where('email', $request->get('email'))->first();
+
+        if ($user != null) {
+            $user->can_create_event = true;
+            $user->save();
+            return redirect()->route('admin.grant_permission')->with('success', 'Permission granted for' . $user->email);
+        } else {
+            return redirect()->route('admin.grant_permission')->with('error', 'User not found with the provided email.');
+        }
     }
 
 
@@ -75,13 +75,29 @@ class AdminController extends Controller
         }
     }
 
+    
+
+
     public function showEvent(Event $event)
     {
         return view('admin.show-event', ['event' => $event]);
     }
 
+
     public function showUser(User $user)
     {
         return view('admin.show-user', ['user' => $user]);
     }
+
+    public function revokePermission2(User $user)
+{
+    if ($user) {
+        $user->can_create_event = false;
+        $user->save();
+        return redirect()->route('home')->with('success', 'Permission revoked for ' . $user->email);
+    } else {
+        return redirect()->route('home')->with('error', 'User not found with the provided email.');
+    }
+}
+
 }
