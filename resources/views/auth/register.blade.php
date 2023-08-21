@@ -53,7 +53,7 @@
                 <!-- Year -->
                 <div class="mt-4">
                     <x-input-label for="college_year" :value="__('Year')" />
-                    <select id="college_year" class="block mt-1 w-full text-sm font-medium text-gray-800 dark:text-gray-200 border-gray-200 shadow-sm rounded-lg" type="text" name="college_year" :value="old('college_year')" required autofocus autocomplete="college_year">
+                    <select id="college_year" class="block mt-1 w-full text-sm font-medium text-gray-800 border-gray-200 shadow-sm rounded-lg" type="text" name="college_year" :value="old('college_year')" required autofocus autocomplete="college_year">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>

@@ -3,7 +3,7 @@
 @section('content')
 <section class="flex">
     <!-- content -->
-    <div class="px-40 w-full">
+    <div class="px-16 w-full">
         <div class="items-end justify-between sm:flex">
             <div class="max-w-xl py-8">
                 <h2 class="text-4xl font-bold tracking-tight sm:text-5xl">
@@ -28,8 +28,8 @@
         </div>
         <div class="grid grid-cols-1 lg:grid-cols-3 lg:gap-8 py-8">
             <div class="">
-                <div class="bg-white border-4 border-black h-64 w-64 shadow-xl">
-
+                <div class="rounded-xl border-4 border-black h-64 w-64 shadow-xl">
+                    <img class="rounded-lg border-2 border-black inset-0 h-full w-full object-cover" src="{{ asset('storage/' . Auth::user()->profile_picture) }}" alt="">
                 </div>
                 <a href="{{ route('user.edit') }}">
                     <div class="bg-black h-10 w-64 rounded-lg my-8 shadow-xl flex justify-center items-center">

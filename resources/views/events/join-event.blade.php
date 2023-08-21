@@ -4,11 +4,11 @@
 <section class="flex">
 
     <!-- content -->
-    <div class="px-16 w-full">
+    <div class="w-full">
         <!-- Other sections and content -->
 
         <!-- Join Event Section -->
-        <div class="px-10 mx-32 mt-8">
+        <div class="p-10 py-40 mx-32 mt-8">
             <div class="border-4 border-black p-6 bg-white shadow-xl">
                 <h2 class="text-2xl font-semibold mb-4">Join Event</h2>
 

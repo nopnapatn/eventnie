@@ -63,11 +63,13 @@ class UserController extends Controller
         $userTemp = Auth::user();
         $user = User::find($userTemp->id);
 
-
         $user->name = $request->get('name');
         $user->phoneNumber = $request->get('phoneNumber');
         $user->allergic_food = $request->get('allergic_food');
         $user->bio = $request->get('bio');
+        if ($request->hasFile('image')) {
+            $user->profile_picture = $request->file('image')->store('user_images', 'public');
+        }
 
         $user_name = $request->get('name');
         if ($user_name == null) {
@@ -89,6 +91,10 @@ class UserController extends Controller
             $user->bio = Auth::user()->bio;
         }
 
+        $user_profile_picture = $request->get('profile_picture');
+        if ($user_profile_picture == null) {
+            $user->profile_picture = Auth::user()->profile_picture;
+        }
         $user->save();
 
         return redirect()->route('user.index', $user);

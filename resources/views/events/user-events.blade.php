@@ -3,14 +3,14 @@
 @section('content')
 <section class="flex">
     <!-- content -->
-    <div class="px-32 w-full">
+    <div class="p-8 w-full">
         <!-- section -->
         <section class="">
             <div class="mx-auto max-w-screen-2xl px-4 py-8 sm:px-6 lg:px-8">
                 <div class="items-end justify-between sm:flex">
                     <div class="max-w-xl">
                         <h2 class="text-4xl font-bold tracking-tight sm:text-5xl">
-                            กิจกรรมที่คุณเข้าร่วมแล้ว!
+                            กิจกรรมที่คุณเข้าร่วม
                         </h2>
 
                         <p class="mt-8 max-w-lg text-gray-500">
@@ -31,7 +31,7 @@
                 </div>
 
                 <div class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                    <blockquote class="flex h-full flex-col justify-between bg-gray-100 p-12">
+                    <blockquote class="flex h-96 flex-col justify-between bg-gray-100 rounded-xl p-12">
                         <div>
                             <div class="flex gap-0.5 text-green-500">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
@@ -68,31 +68,12 @@
                     </blockquote>
 
                     @foreach ($attendedEvents as $event)
-                    <div class="">
-                        <!-- <a href="{{ route('events.show', ['event' => $event]) }}">
-                                            <div class="px-4 h-80">
-                                                <a href="{{ route('events.show', ['event' => $event]) }}" class="group relative block bg-black">
-                                                    <img alt="Developer" src="{{ asset('storage/' . $event->image_path) }}" class="absolute inset-0 h-full w-full object-cover opacity-75 transition-opacity group-hover:opacity-50" />
-
-                                                    <div class="relative p-4 sm:p-6 lg:p-8">
-                                                        <p class="text-sm font-medium uppercase tracking-widest text-pink-500">End!! {{ date('d-m-Y', strtotime($event->end_at)) }}</p>
-
-                                                        <p class="text-xl font-bold text-white sm:text-2xl text-ellipsis overflow-hidden line-clamp-1">{{ $event->title }}</p>
-
-                                                        <div class="mt-32 sm:mt-40 lg:mt-44">
-                                                            <div class="translate-y-8 transform opacity-0 transition-all group-hover:translate-y-0 group-hover:opacity-100 text-ellipsis overflow-hidden line-clamp-2">
-                                                                <p class="text-sm text-white">{{ $event->description }}</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </a> -->
+                    <div class="swiper-slide">
                         <a href="{{ route('events.show', ['event' => $event]) }}" class="group relative block h-64 sm:h-80 lg:h-96 shadow-xl">
-                            <span class="absolute inset-0 border-2 border-dashed border-black"></span>
-                            <div class="relative flex h-full transform items-end border-2 border-black bg-black transition-transform group-hover:-translate-x-2 group-hover:-translate-y-2 opacity-90">
+                            <span class="absolute inset-0 border-2 rounded-xl border-dashed border-black"></span>
+                            <div class="relative flex h-full transform items-end rounded-xl border-4 border-black bg-black transition-transform group-hover:-translate-x-2 group-hover:-translate-y-2 opacity-90">
                                 <div class="p-4 !pt-0 transition-opacity group-hover:absolute group-hover:opacity-0 sm:p-6 lg:p-8">
-                                    <img alt="Developer" src="{{ asset('storage/' . $event->image_path) }}" class="absolute inset-0 h-full w-full object-cover opacity-75 transition-opacity group-hover:opacity-50" />
+                                    <img alt="Developer" src="{{ asset('storage/' . $event->image_path) }}" class="rounded-xl absolute inset-0 h-full w-full object-cover opacity-75 transition-opacity group-hover:opacity-50" />
                                     <p class="text-sm font-medium uppercase tracking-widest text-white">End!! {{ date('d-m-Y', strtotime($event->end_at)) }}</p>
                                     <h2 class="mt-4 text-xl font-medium sm:text-2xl text-white">{{ $event->title }}</h2>
                                 </div>
@@ -101,7 +82,7 @@
                                     <p class="text-sm font-medium uppercase tracking-widest text-red-400">End!! {{ date('d-m-Y', strtotime($event->end_at)) }}</p>
                                     <h3 class="mt-4 text-xl font-medium sm:text-2xl text-white">{{ $event->title }}</h3>
 
-                                    <p class="mt-4 text-sm sm:text-base text-white text-ellipsis overflow-hidden line-clamp-4">{{ $event->description }}</p>
+                                    <p class="mt-4 text-sm sm:text-base text-white">{{ $event->description }}</p>
 
                                     <p class="mt-8 font-bold text-white">Read more</p>
                                 </div>

@@ -10,8 +10,14 @@
 
             <div class="grid grid-cols-1 gap-2 lg:grid-cols-3 lg:gap-8 py-8">
                 <div class="">
-                    <div class="border-4 border-black h-64 w-64 shadow-xl">
-
+                    <div>
+                        <div class="mb-4">
+                            <label for="photo" class="block font-medium">Photo</label>
+                            <input type="file" name="photo" id="photo" accept="image/*" class="w-full">
+                        </div>
+                    </div>
+                    <div class="rounded-lg border-4 border-black h-64 w-64 shadow-xl">
+                        <img class="rounded-lg inset-0 h-full w-full object-cover" src="{{ asset('storage/' . Auth::user()->profile_picture) }}" alt="">
                     </div>
                     <div class="bg-black h-10 w-64 rounded-lg my-8 shadow-xl flex justify-center items-center">
                         <button class="bg-black h-10 w-64 rounded-lg my-8 shadow-xl flex justify-center items-center">

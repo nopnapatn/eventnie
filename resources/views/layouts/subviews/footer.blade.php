@@ -1,3 +1,3 @@
-<footer class="bg-white py-8">
+<footer class="bg-gray-100 py-8">
 
 </footer>
