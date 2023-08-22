@@ -10,7 +10,7 @@
         <ul>
             @foreach ($eventStaffs as $staffMember)
             <li>{{ $staffMember->name }} ({{ $staffMember->email }})</li>
-            @endforeach
+            @endforeach 
         </ul>
 
         <div class="mt-4">

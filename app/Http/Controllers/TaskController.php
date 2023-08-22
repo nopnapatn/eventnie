@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Event;
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -23,10 +24,18 @@ class TaskController extends Controller
         // ส่งคำตอบกลับว่าอัพเดตสำเร็จ
         return response()->json(['message' => 'Position updated successfully']);
     }
-    public function index()
+    public function index(Event $event)
     {
-        $tasks = auth()->user()->tasks; // ดึงรายการงานของผู้ใช้ปัจจุบัน
-        return view('tasks.index', compact('tasks'));
+        // Get the staff members for the event
+        $eventStaffs = $event->member()->get();
+
+        $creator = User::where('id', $event->creator_id)->first();
+
+        // Retrieve tasks for the authenticated user
+        $tasks = auth()->user()->tasks;
+
+        // Pass both $tasks, $event, and $staffs to the view
+        return view('tasks.index', compact('tasks', 'event', 'eventStaffs', 'creator'));
     }
 
     /**

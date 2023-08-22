@@ -56,7 +56,13 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::get('/tasks', [TaskController::class, 'index'])->name('tasks.index');
+    // Route::get('/tasks', [TaskController::class, 'index'])->name('tasks.index');
+
+    Route::get(
+        '/tasks/{event}', 
+        [TaskController::class, 'index'])
+    ->name('tasks.index');
+
     Route::put('/tasks',  [TaskController::class, 'edit'])->name('tasks.edit');
     Route::patch('/tasks',  [TaskController::class, 'update'])->name('tasks.update');
     Route::patch('/tasks', [TaskController::class, 'updatePosition'])->name('tasks.updatePosition');

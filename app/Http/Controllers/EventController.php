@@ -289,7 +289,7 @@ class EventController extends Controller
 
         return view('events.created-event', compact('ownedEvents'));
     }
-
+ 
     public function showStaffMembers(Event $event)
     {
         // // Make sure the user is the event owner before showing staff members
