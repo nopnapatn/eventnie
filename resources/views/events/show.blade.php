@@ -22,7 +22,7 @@
                     <img src="{{ asset('storage/' . $event->image_path) }}" alt="Event Image" class="bg-cover bg-center h-full w-full">
                 </div>
                 <div class="h-96 w-1/3 p-4">
-                    <span class="font-semibold text-4xl text-black">{{ $event->title }}</span><br><br>
+                    <!-- <span class="font-semibold text-4xl text-black">{{ $event->title }}</span><br><br> -->
                     <span class="text-black">LOCATION {{ $event->location }}</span><br><br>
                     <span class="text-black">START {{ date('M j, Y H:i A', strtotime($event->start_at)) }}</span><br>
                     <div class="flex items-center">
