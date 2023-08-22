@@ -10,7 +10,7 @@
                 <div class="items-end justify-between sm:flex">
                     <div class="max-w-xl">
                         <h2 class="text-4xl font-bold tracking-tight sm:text-5xl">
-                            กิจกรรมทั้งหมด มาเข้าร่วมกิจกรรมกัน!
+                            กิจกรรมของฉัน
                         </h2>
 
                         <p class="mt-8 max-w-lg text-gray-500">
