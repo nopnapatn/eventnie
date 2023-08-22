@@ -23,24 +23,17 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
-
             'studentID' => fake()->numberBetween(1000000000, 9999999999),
             'faculty' => Str::random(10),
             'major' => Str::random(10),
             'college_year' => fake()->numberBetween(1, 5),
             'phoneNumber' => fake()->phoneNumber(),
             'allergic_food' => Str::random(10),
-            // 'joined_event_count' => fake()->numberBetween(0, 10),
-
             'bio' => fake()->paragraph(),
             'profile_picture' => fake()->image('public/storage/', 800, 600, null, false),
 
             'is_admin' => false,
             'can_create_event' => false,
-
-            // 'created_at' => now(),
-            // 'updated_at' => now(),
-            // 'deleted_at' => null,
         ];
     }
 

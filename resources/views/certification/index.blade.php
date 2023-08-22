@@ -5,7 +5,7 @@
     <div class="max-w-4xl mx-auto p-2">
 
         {{-- {{ $user->certification() }} --}}
-        <h2 class="text-4xl font-extrabold mb-4 py-8">User Certifications</h2>
+        <h2 class="text-4xl font-extrabold mb-4 py-8">เกียรติบัตรของฉัน</h2>
 
         @if (!isset($user))
         <p class="text-gray-500">Please log in to view your certificates.</p>
@@ -24,15 +24,16 @@
         @endif
 
         @auth
-        <div class="mt-8">
-            <h3 class="text-lg font-semibold mb-2">Upload New Certificate</h3>
+        <div class="mt-8 flex items-start">
             <form action="{{ route('certifications.upload') }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                <label for="certificate_name" class="block mb-2">Certificate Name:</label>
+                <label for="certificate_name" class="block mb-2">Certificate Title:</label>
                 <input type="text" name="certificate_name" id="certificate_name" class="mb-4 rounded-lg" required>
                 <label for="certificate" class="block mb-2">Select Certificate File:</label>
                 <input type="file" name="certificate" id="certificate" class="mb-4" required>
+                <div class="py-4"></div>
                 <button type="submit" class="bg-black text-white py-2 px-4 rounded-lg">Upload Certificate</button>
+                <div class="py-4"></div>
             </form>
         </div>
         @endauth

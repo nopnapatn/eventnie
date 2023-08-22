@@ -7,7 +7,7 @@
         <div class="items-end justify-between sm:flex">
             <div class="max-w-xl py-8">
                 <h2 class="text-4xl font-bold tracking-tight sm:text-5xl">
-                    โปรไฟล์ของคุณ!
+                    โปรไฟล์ของฉัน
                 </h2>
                 <!-- <p class="mt-8 max-w-lg text-gray-500">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur
@@ -58,11 +58,6 @@
                         <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
                             <dt class="font-medium text-gray-900">Faculty</dt>
                             <dd class="text-gray-700 sm:col-span-2">{{ Auth::user()->faculty }}</dd>
-                        </div>
-
-                        <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
-                            <dt class="font-medium text-gray-900">Major</dt>
-                            <dd class="text-gray-700 sm:col-span-2">{{ Auth::user()->major }}</dd>
                         </div>
 
                         <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">

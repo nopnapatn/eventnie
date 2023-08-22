@@ -63,7 +63,7 @@ class EventController extends Controller
             'location' => 'required|max:255',
             'contact' => 'required|max:255',
             'start_at' => 'required|date',
-            'end_at' => 'required|date',
+            'end_at' => 'required|date|after:start_at',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'max_attendees' => 'required|integer|min:1',
         ]);
@@ -194,34 +194,15 @@ class EventController extends Controller
 
     public function showJoinEventForm(Event $event)
     {
+        if ($event->is_full) {
+            return redirect()->route('events.index', ['event' => $event->id])
+                ->with('error', 'This event is already full');
+        }
+
         return view('events.join-event', [
             'event' => $event,
         ]);
     }
-
-    // public function joinEvent(Request $request, Event $event)
-    // {
-    //     if (Gate::denies('join-event')) {
-    //         abort(403, 'You must be logged in to join an event.');
-    //     }
-
-    //     $user = Auth::user();
-
-    //     // Check if the user is already an attendee
-    //     $userIsAttendee = $event->attendees()->where('user_id', $user->id)->exists();
-
-    //     if (!$userIsAttendee) {
-    //         $data = [
-    //             'description' => $request->input('description'),
-    //             'img_url' => $this->uploadImageAndGetUrl($request->file('photo')),
-    //             'video_url' => $request->input('video_url'),
-    //         ];
-    //         $event->attendees()->attach($user, $data);
-    //     }
-
-    //     return redirect()->route('events.index', ['event' => $event->id])
-    //         ->with('success', 'You have successfully joined the event.');
-    // }
 
     public function joinEvent(Request $request, Event $event)
     {
@@ -239,10 +220,13 @@ class EventController extends Controller
                 ->with('error', 'You are already an attendee of this event.');
         }
 
+
+
         $currentAttendees = $event->attendees()->count();
         $maxAttendees = $event->max_attendees;
 
         if ($currentAttendees >= $maxAttendees) {
+            $event->is_full = false;
             return redirect()->route('events.index', ['event' => $event->id])
                 ->with('error', 'Sorry, the event is already full. You cannot join.');
         }
@@ -289,7 +273,7 @@ class EventController extends Controller
 
         return view('events.created-event', compact('ownedEvents'));
     }
- 
+
     public function showStaffMembers(Event $event)
     {
         // // Make sure the user is the event owner before showing staff members

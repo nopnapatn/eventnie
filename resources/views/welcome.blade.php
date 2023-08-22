@@ -44,6 +44,7 @@
                             <div class="mx-6 lg:col-span-2 lg:mx-0">
                                 <div class="swiper-container !overflow-hidden">
                                     <div class="swiper-wrapper">
+                                        
                                         @foreach ($events as $event)
                                         <div class="swiper-slide">
                                             <a href="{{ route('events.show', ['event' => $event]) }}" class="group relative block h-64 sm:h-80 lg:h-96 shadow-xl">
@@ -51,25 +52,27 @@
                                                 <div class="relative flex h-full transform items-end rounded-xl border-4 border-black bg-black transition-transform group-hover:-translate-x-2 group-hover:-translate-y-2 opacity-90">
                                                     <div class="p-4 !pt-0 transition-opacity group-hover:absolute group-hover:opacity-0 sm:p-6 lg:p-8">
                                                         <img alt="Developer" src="{{ asset('storage/' . $event->image_path) }}" class="rounded-xl absolute inset-0 h-full w-full object-cover opacity-75 transition-opacity group-hover:opacity-50" />
-                                                        <p class="text-sm font-medium uppercase tracking-widest text-white">End!! {{ date('M j, Y H:i A', strtotime($event->end_at)) }}</p>
-                                                        <h2 class="mt-4 text-xl font-medium sm:text-2xl text-white">{{ $event->title }}</h2>
                                                     </div>
-
                                                     <div class="absolute p-4 opacity-0 transition-opacity group-hover:relative group-hover:opacity-100 sm:p-6 lg:p-8">
-                                                        <p class="text-sm font-medium uppercase tracking-widest text-red-400">End!! {{ date('M j, Y H:i A', strtotime($event->end_at)) }}</p>
-                                                        <h3 class="mt-4 text-xl font-medium sm:text-2xl text-white text-ellipsis overflow-hidden line-clamp-4">{{ $event->title }}</h3>
+                                                        @if($event->end_at < now()) <p class="text-sm font-medium uppercase tracking-widest text-red-400">Ended {{ date('M j, Y H:i A', strtotime($event->end_at)) }}</p>
+                                                            @else
+                                                            <p class="text-sm font-medium uppercase tracking-widest text-green-400">Ongoing</p>
+                                                            @endif
+                                                            <h3 class="mt-4 text-xl font-medium sm:text-2xl text-white text-ellipsis overflow-hidden line-clamp-4">{{ $event->title }}</h3>
 
-                                                        <p class=" mt-4 text-sm sm:text-base text-white text-ellipsis overflow-hidden line-clamp-4">{{ $event->description }}</p>
+                                                            <p class=" mt-4 text-sm sm:text-base text-white text-ellipsis overflow-hidden line-clamp-4">{{ $event->description }}</p>
 
-                                                        <p class="mt-8 font-bold text-white">Read more</p>
+                                                            <p class="mt-8 font-bold text-white">Read more</p>
                                                     </div>
                                                 </div>
                                             </a>
+                                            <h3 class="mt-4 text-xl font-medium sm:text-2xl text-black text-ellipsis overflow-hidden line-clamp-4">{{ $event->title }}</h3>
                                         </div>
                                         @endforeach
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -106,6 +109,7 @@
         <!-- section -->
         <div class="p-8">
             <div class="mb-8 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+                
                 @foreach ($events as $event)
                 <!-- Event Card -->
                 <a href="{{ route('events.show', ['event' => $event]) }}">

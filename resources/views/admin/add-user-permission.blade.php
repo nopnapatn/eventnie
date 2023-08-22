@@ -32,7 +32,7 @@
                 </button>
             </form>
 
-            {{ App\Models\User::find(1)->can_create_events }}
+            
         </div>
     </section>
 @endsection

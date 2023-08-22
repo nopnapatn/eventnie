@@ -15,7 +15,7 @@
                         <div class="flex items-center">
                             @Auth
                             <a href="{{ route('user.index') }}">
-                                <div class="bg-gray-400 rounded-full h-10 w-10 mx-4 shadow-xl">
+                                <div class="bg-gray-400 rounded-lg h-10 w-10 mx-4 shadow-xl">
                                     <img class="rounded-lg border-2 border-black inset-0 h-full w-full object-cover" src="{{ asset('storage/' . Auth::user()->profile_picture) }}" alt="">
                                 </div>
                             </a>

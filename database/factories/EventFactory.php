@@ -27,11 +27,7 @@ class EventFactory extends Factory
             'end_at' => $this->faker->dateTimeBetween('+1 month', '+2 month'),
             'image_path' => $this->faker->image('public/storage/', 800, 600, null, false),
             'max_attendees' => $this->faker->numberBetween(10, 100),
-            // 'is_full' => $this->faker->boolean(),
-            // 'status' => $this->faker->randomElement(['active', 'got problem']),
             'creator_id' => User::inRandomOrder()->first()->id,
-            // 'organizer_id' => User::inRandomOrder()->first()->id,
-            // 'creator_id' => $this->faker->numberBetween(1, 10),
         ];
     }
 }

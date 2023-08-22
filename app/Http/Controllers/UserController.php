@@ -63,6 +63,14 @@ class UserController extends Controller
         $userTemp = Auth::user();
         $user = User::find($userTemp->id);
 
+        $request->validate([
+            'name' => 'nullable|string|max:255',
+            'phoneNumber' => 'nullable|string|size:10',
+            'allergic_food' => 'nullable|string|max:255',
+            'bio' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
         $user->name = $request->get('name');
         $user->phoneNumber = $request->get('phoneNumber');
         $user->allergic_food = $request->get('allergic_food');

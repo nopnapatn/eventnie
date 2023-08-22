@@ -61,6 +61,7 @@
                     <div class="mt-4">
                         <x-input-label for="college_year" :value="__('Year')" />
                         <select id="college_year" class="block mt-1 w-full text-sm font-medium text-gray-800 border-gray-200 shadow-sm rounded-lg" type="text" name="college_year" :value="old('college_year')" required autofocus autocomplete="college_year">
+                            <option value="-">-</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -73,8 +74,8 @@
                     </div>
                     <!-- phoneNumber -->
                     <div>
-                        <x-input-label for="phoneNumber" :value="__('phoneNumber')" />
-                        <x-text-input id="phoneNumber" class="block mt-1 w-full" type="text" name="phoneNumber" :value="old('phoneNumber')" required autofocus autocomplete="name" />
+                        <x-input-label for="phoneNumber" :value="__('Phone Number')" />
+                        <x-text-input id="phoneNumber" class="block mt-1 w-full" type="tel" name="phoneNumber" :value="old('phoneNumber')" pattern="[0-9]*" required autofocus autocomplete="name" />
                         <x-input-error :messages="$errors->get('phoneNumber')" class="mt-2" />
                     </div>
                     <!-- images -->

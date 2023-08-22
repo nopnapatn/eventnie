@@ -10,12 +10,6 @@
 
             <div class="grid grid-cols-1 gap-2 lg:grid-cols-3 lg:gap-8 py-8">
                 <div class="">
-                    <div>
-                        <div class="mb-4">
-                            <label for="photo" class="block font-medium">Photo</label>
-                            <input type="file" name="photo" id="photo" accept="image/*" class="w-full">
-                        </div>
-                    </div>
                     <div class="rounded-lg border-4 border-black h-64 w-64 shadow-xl">
                         <img class="rounded-lg inset-0 h-full w-full object-cover" src="{{ asset('storage/' . Auth::user()->profile_picture) }}" alt="">
                     </div>
@@ -46,11 +40,6 @@
                             <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
                                 <dt class="font-medium text-gray-900">Faculty</dt>
                                 <dd class="text-gray-700 sm:col-span-2">{{ Auth::user()->faculty }}</dd>
-                            </div>
-
-                            <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
-                                <dt class="font-medium text-gray-900">Major</dt>
-                                <dd class="text-gray-700 sm:col-span-2">{{ Auth::user()->major }}</dd>
                             </div>
 
                             <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">

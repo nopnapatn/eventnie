@@ -21,14 +21,13 @@
                 <div class="rounded-lg border-4 border-black h-96 w-1/3 shadow-xl">
                     <img src="{{ asset('storage/' . $event->image_path) }}" alt="Event Image" class="bg-cover bg-center h-full w-full">
                 </div>
-                <div class="h-96 w-1/3 p-4">
-                    <!-- <span class="font-semibold text-4xl text-black">{{ $event->title }}</span><br><br> -->
-                    <span class="text-black">LOCATION {{ $event->location }}</span><br><br>
-                    <span class="text-black">START {{ date('M j, Y H:i A', strtotime($event->start_at)) }}</span><br>
+                <div class="h-96 w-1/3 p-4 flex-col justify-between">
+                    <span class="text-black">สถานที่จัดงาน {{ $event->location }}</span><br><br>
+                    <span class="text-black">เริ่มวันที่ {{ date('M j, Y H:i A', strtotime($event->start_at)) }}</span><br>
                     <div class="flex items-center">
-                        <span class="text-2xl text-red-500 font-semibold">END</span><br>
+                        <span class="text-1xl text-red-500 font-semibold">วันสุดท้าย :</span><br>
                         <div id="countdown-timer" class="py-4">
-                            <div id="countdown" class="text-2xl text-red-500 font-semibold"></div>
+                            <div id="countdown" class="text-1xl text-red-500 font-semibold"></div>
                         </div>
                         <script>
                             // Set the end date and time of the event
@@ -63,10 +62,10 @@
                         <button class="bg-black rounded-lg h-10 w-24 text-white shadow-xl">Join Event</button>
                     </a>
                     @else
-                    <span>You have already joined this event.</span>
+                    <span class="text-lg bg-black text-white rounded-lg p-2">You have already joined this event.</span>
                     @endif
                     @else
-                    <span>Please log in to join this event.</span>
+                    <span class="text-xl bg-black text-white rounded-lg p-2">Please log in to join this event.</span>
                     @endauth
 
                 </div>

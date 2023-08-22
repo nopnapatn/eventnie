@@ -72,9 +72,9 @@
         <div class="py-4">
             <h2 class="font-semibold text-2xl mb-4">Expenses</h2>
             @if ($event->expenses->isEmpty())
-                <p>No expenses have been added for this event.</p>
+            <p>No expenses have been added for this event.</p>
             @else
-                <ul>
+            <!-- <ul>
                     @foreach ($event->expenses as $expense)
                         <li>
                             <strong>{{ $expense->title }}</strong>
@@ -82,7 +82,18 @@
                             <a href="{{ asset($expense->file_path) }}" target="_blank">Download Expense</a>
                         </li>
                     @endforeach
+                </ul> -->
+            <div class="mt-4">
+                <ul>
+                    @foreach ($event->expenses as $expense)
+                    <li class="border-4 border-black rounded-lg p-8 my-4">
+                        <strong class="py-4">Name: {{ $expense->title }}</strong>
+                        <p class="py-4">Description: {{ $expense->description }}</p>
+                        <a href="{{ route('expenses.download', ['expense' => $expense]) }}" target="_blank" class="bg-black text-white p-2 rounded-lg">Download Expense</a>
+                    </li>
+                    @endforeach
                 </ul>
+            </div>
             @endif
         </div>
 

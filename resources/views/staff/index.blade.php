@@ -2,8 +2,8 @@
 
 @section('content')
 <section>
-    <div class="max-w-4xl mx-auto p-2">
-        <h2 class="text-4xl font-extrabold mb-4 py-8">กิจกรรมที่คุณเป็นสตาฟ</h2>
+    <div class="max-w-4xl mx-auto p-8">
+        <h2 class="text-4xl font-extrabold mb-4 py-8">กิจกรรมที่ฉันเป็นสตาฟ</h2>
 
         @if ($associatedEvents->isEmpty())
         <p class="text-gray-500">You are not associated with any events as a staff or creator.</p>
