@@ -13,12 +13,12 @@
                             กิจกรรมที่คุณเข้าร่วม
                         </h2>
 
-                        <p class="mt-8 max-w-lg text-gray-500">
+                        <!-- <p class="mt-8 max-w-lg text-gray-500">
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur
                             praesentium natus sapiente commodi. Aliquid sunt tempore iste
                             repellendus explicabo dignissimos placeat, autem harum dolore
                             reprehenderit quis! Quo totam dignissimos earum.
-                        </p>
+                        </p> -->
                     </div>
 
                     <a href="#" class="mt-8 inline-flex shrink-0 items-center gap-2 rounded-full border border-pink-600 px-5 py-3 font-medium text-pink-600 hover:bg-pink-600 hover:text-white sm:mt-0 lg:mt-8">

@@ -351,7 +351,7 @@ class EventController extends Controller
         $this->validate($request, [
             'title' => 'required|string',
             'description' => 'required|string',
-            'expense_file' => 'required|file|mimes:pdf,doc,docx|max:2048', // Adjust the allowed file types and max size
+            'expense_file' => 'required|file|mimes:pdf,doc,docx,png,jpg,jpeg|max:2048', // Adjust the allowed file types and max size
         ]);
 
         $uploadedFile = $request->file('expense_file');

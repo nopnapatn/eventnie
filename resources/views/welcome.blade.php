@@ -12,7 +12,7 @@
 
             <section class="">
                 <div class="mx-auto max-w-[1340px] px-4 py-16 sm:px-6 sm:py-24 lg:me-0 lg:pe-0 lg:ps-8">
-                    <div class="pl-20 py-20 rounded-xl shadow-xl border-4 border-black">
+                    <div class="bg-yellow-300 pl-20 py-20 rounded-xl shadow-xl border-4 border-black">
                         <div class="grid grid-cols-1 gap-y-8 lg:grid-cols-3 lg:items-center lg:gap-x-16">
                             <div class="max-w-xl text-left ltr:sm:text-left rtl:sm:text-right">
                                 <h2 class="text-3xl font-bold sm:text-4xl">
@@ -51,12 +51,12 @@
                                                 <div class="relative flex h-full transform items-end rounded-xl border-4 border-black bg-black transition-transform group-hover:-translate-x-2 group-hover:-translate-y-2 opacity-90">
                                                     <div class="p-4 !pt-0 transition-opacity group-hover:absolute group-hover:opacity-0 sm:p-6 lg:p-8">
                                                         <img alt="Developer" src="{{ asset('storage/' . $event->image_path) }}" class="rounded-xl absolute inset-0 h-full w-full object-cover opacity-75 transition-opacity group-hover:opacity-50" />
-                                                        <p class="text-sm font-medium uppercase tracking-widest text-white">End!! {{ date('d-m-Y', strtotime($event->end_at)) }}</p>
+                                                        <p class="text-sm font-medium uppercase tracking-widest text-white">End!! {{ date('M j, Y H:i A', strtotime($event->end_at)) }}</p>
                                                         <h2 class="mt-4 text-xl font-medium sm:text-2xl text-white">{{ $event->title }}</h2>
                                                     </div>
 
                                                     <div class="absolute p-4 opacity-0 transition-opacity group-hover:relative group-hover:opacity-100 sm:p-6 lg:p-8">
-                                                        <p class="text-sm font-medium uppercase tracking-widest text-red-400">End!! {{ date('d-m-Y', strtotime($event->end_at)) }}</p>
+                                                        <p class="text-sm font-medium uppercase tracking-widest text-red-400">End!! {{ date('M j, Y H:i A', strtotime($event->end_at)) }}</p>
                                                         <h3 class="mt-4 text-xl font-medium sm:text-2xl text-white text-ellipsis overflow-hidden line-clamp-4">{{ $event->title }}</h3>
 
                                                         <p class=" mt-4 text-sm sm:text-base text-white text-ellipsis overflow-hidden line-clamp-4">{{ $event->description }}</p>

@@ -10,9 +10,9 @@
             <span class="font-semibold text-6xl text-black">{{ $event->title }}</span>
             <div class="py-2"></div>
             <div class="bg-black h-10 w-full flex items-center shadow-xl rounded-lg">
-                <span class="text-white">START {{ date('d-m-Y', strtotime($event->start_at)) }}</span>
+                <span class="text-white">START {{ date('M j, Y H:i A', strtotime($event->start_at)) }}</span>
                 <span>\t</span>
-                <span class="text-white">END {{ date('d-m-Y', strtotime($event->end_at)) }}</span>
+                <span class="text-white">END {{ date('M j, Y H:i A', strtotime($event->end_at)) }}</span>
                 <span>\t</span>
                 <span class="text-white">LOCATION {{ $event->location }}</span>
             </div>
@@ -24,7 +24,7 @@
                 <div class="h-96 w-1/3 p-4">
                     <span class="font-semibold text-4xl text-black">{{ $event->title }}</span><br><br>
                     <span class="text-black">LOCATION {{ $event->location }}</span><br><br>
-                    <span class="text-black">START {{ date('d/m/Y', strtotime($event->start_at)) }}</span><br>
+                    <span class="text-black">START {{ date('M j, Y H:i A', strtotime($event->start_at)) }}</span><br>
                     <div class="flex items-center">
                         <span class="text-2xl text-red-500 font-semibold">END</span><br>
                         <div id="countdown-timer" class="py-4">
@@ -94,8 +94,8 @@
 
                 <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
                     <dt class="font-medium text-gray-900">วันที่จัด</dt>
-                    <dd class="text-gray-700 sm:col-span-2">{{ date('d/m/Y', strtotime($event->start_at)) }} ถึงวันที่
-                        {{ date('d/m/Y', strtotime($event->end_at)) }}
+                    <dd class="text-gray-700 sm:col-span-2">{{ date('M j, Y H:i A', strtotime($event->start_at)) }} ถึงวันที่
+                        {{ date('M j, Y H:i A', strtotime($event->end_at)) }}
                     </dd>
                 </div>
 
