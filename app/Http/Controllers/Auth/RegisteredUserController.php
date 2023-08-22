@@ -31,17 +31,28 @@ class RegisteredUserController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'], // Ensure email is unique in the 'users' table
         ]);
 
+        $path = '';
+        if ($request->hasFile('image_path')) {
+            // บันทึกไฟล์รูปภาพลงใน folder ชื่อ 'user_images' ที่ storage/app/public
+            $path = $request->file('image_path')->store('images/profile', 'public');
+        }
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-        ]);
+            'faculty' => $request->faculty,
+            'college_year' => $request->college_year,
+            'studentID' => $request->StudentID,
+            'profile_picture' => $path,
+            'phoneNumber' => $request->phoneNumber,
 
+        ]);
+        $user->image_path = $path;
+
+        // $user->save();
         event(new Registered($user));
 
         Auth::login($user);
