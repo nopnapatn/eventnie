@@ -8,7 +8,7 @@
         <form action="{{ route('events.update', ['event' => $event]) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
-            
+
             <div class="mb-4">
                 <label for="title" class="block text-lg font-semibold mb-2">Event Title</label>
                 <input type="text" name="title" id="title" class="w-full p-2 border rounded" value="{{ $event->title }}" required>

@@ -56,12 +56,14 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+
     // Route::get('/tasks', [TaskController::class, 'index'])->name('tasks.index');
 
     Route::get(
-        '/tasks/{event}', 
-        [TaskController::class, 'index'])
-    ->name('tasks.index');
+        '/tasks/{event}',
+        [TaskController::class, 'index']
+    )
+        ->name('tasks.index');
 
     Route::put('/tasks',  [TaskController::class, 'edit'])->name('tasks.edit');
     Route::patch('/tasks',  [TaskController::class, 'update'])->name('tasks.update');
@@ -155,57 +157,66 @@ Route::get(
 // staff
 
 Route::get(
-    '/staff/{event}/staff-members', 
-    [EventController::class, 'showStaffMembers'])
-->name('staff.staffMembers');
+    '/staff/{event}/staff-members',
+    [EventController::class, 'showStaffMembers']
+)
+    ->name('staff.staffMembers');
 
 Route::post(
-    '/staff/{event}/add-staff-member', 
-    [EventController::class, 'addStaffMember'])
-->name('staff.addStaffMember');
+    '/staff/{event}/add-staff-member',
+    [EventController::class, 'addStaffMember']
+)
+    ->name('staff.addStaffMember');
 
 // Route::delete(
 //     '/staff/{event}/remove-staff-member', 
 //     [EventController::class, 'removeStaffMember']);
 
 Route::get(
-    '/staff', 
-    [EventController::class, 'showStaffEvents'])
-->name('staff.staffEvents');
+    '/staff',
+    [EventController::class, 'showStaffEvents']
+)
+    ->name('staff.staffEvents');
 
 // certification
 
 Route::get(
-    '/certifications', 
-    [CertificationController::class, 'showCertifications'])
-->name('certifications.show');
+    '/certifications',
+    [CertificationController::class, 'showCertifications']
+)
+    ->name('certifications.show');
 
 
 Route::post(
-    '/certifications/upload', 
-    [CertificationController::class, 'uploadCertificate'])
-->name('certifications.upload');
+    '/certifications/upload',
+    [CertificationController::class, 'uploadCertificate']
+)
+    ->name('certifications.upload');
 
 // for downloading the certificate
 
 Route::get(
-    '/certifications/download/{certificate}', 
-    [CertificationController::class, 'download'])
-->name('certifications.download');
+    '/certifications/download/{certificate}',
+    [CertificationController::class, 'download']
+)
+    ->name('certifications.download');
 
 // expenses
 
 Route::get(
-    '/events/{event}/expenses/upload', 
-    [EventController::class, 'showExpenseUploadView'])
-->name('events.expenses.upload');
+    '/events/{event}/expenses/upload',
+    [EventController::class, 'showExpenseUploadView']
+)
+    ->name('events.expenses.upload');
 
 Route::post(
-    '/events/{event}/expenses/upload', 
-    [EventController::class, 'uploadExpense'])
-->name('expenses.upload');
+    '/events/{event}/expenses/upload',
+    [EventController::class, 'uploadExpense']
+)
+    ->name('expenses.upload');
 
 Route::get(
-    '/events/download/{expense}', 
-    [EventController::class, 'downloadExpense'])
-->name('expenses.download');
+    '/events/download/{expense}',
+    [EventController::class, 'downloadExpense']
+)
+    ->name('expenses.download');

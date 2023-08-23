@@ -4,7 +4,12 @@
 <section class="flex">
     <!-- content -->
     <div class="px-40 w-full p-8">
-        <h2 class="font-semibold text-2xl mb-4">{{ $event->title }}</h2>
+        <div class="flex justify-between py-2">
+            <h2 class="font-semibold text-2xl mb-4">{{ $event->title }}</h2>
+            <a href="{{ route('events.edit', ['event' => $event])}}" class="bg-black text-white p-3 rounded-lg">
+                Edit Event
+            </a>
+        </div>
         <div class="w-full h-2 bg-black rounded-lg"></div>
         <div class="py-2"></div>
         <div class="mt-4 border-4 border-black rounded-lg p-8">

@@ -26,7 +26,7 @@
                         </blockquote>
                         @foreach ($ownedEvents->sortByDesc('end_at') as $event)
                         <div class="swiper-slide">
-                            <a href="{{ route('events.show', ['event' => $event]) }}" class="group relative block h-64 sm:h-80 lg:h-96 shadow-xl">
+                            <a href="{{ route('staff.staffMembers', ['event' => $event]) }}" class="group relative block h-64 sm:h-80 lg:h-96 shadow-xl">
                                 <span class="absolute inset-0 border-2 rounded-xl border-dashed border-black"></span>
                                 <div class="relative flex h-full transform items-end rounded-xl border-4 border-black bg-black transition-transform group-hover:-translate-x-2 group-hover:-translate-y-2 opacity-90">
                                     <div class="p-4 !pt-0 transition-opacity group-hover:absolute group-hover:opacity-0 sm:p-6 lg:p-8">
